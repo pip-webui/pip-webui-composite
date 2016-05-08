@@ -1,0 +1,64 @@
+<div class="app-composite" ng-if="$party">
+    <h2 class="m16">Composite View</h2>
+
+    <div class="composite big-sample-output">
+        <pip-composite-view pip-contents="compositeView"
+                            ng-disabled="isDisabled()"
+                            pip-rebind="true">
+        </pip-composite-view>
+
+        <div class="pip-ref-expander" layout="row" layout-align="start center">
+            <md-button flex>
+                <div layout="row" layout-align="start center">
+                    <img src="https://pp.vk.me/c7011/v7011865/1153b/t6q_l-LGOf4.jpg" class="pip-pic-sm"
+                         ng-click="showAlert($event)">
+
+                    <div class="pip-content" flex>
+                        <p class="pip-title">{{item.name}}</p>
+
+                        <p class="pip-subtitle">{{item.status1}} {{item.status2}}</p>
+                    </div>
+                    <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+                </div>
+            </md-button>
+        </div>
+        <div class="pip-ref-expander" layout="row" layout-align="start center">
+            <md-button flex>
+                <div layout="row" layout-align="start center">
+                    <img src="https://pp.vk.me/c7011/v7011865/1153b/t6q_l-LGOf4.jpg" class="pip-pic-sm"
+                         ng-click="showAlert($event)">
+
+                    <div class="pip-content" flex>
+                        <p class="pip-title">
+                            <md-icon md-svg-icon="icons:forward-all"></md-icon>
+                            {{item.name}}
+                        </p>
+                        <p class="pip-subtitle">
+                            <md-icon md-svg-icon="icons:world"></md-icon>
+                            <span>{{item.status1}}</span>
+                        </p>
+                    </div>
+                    <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+                </div>
+            </md-button>
+        </div>
+        <div class="pip-drilldown-list">
+            <md-button class="pip-drilldown-list-item">
+                <div class="pip-content">
+                    <md-icon md-svg-icon="icons:document" class="pip-icon"></md-icon>
+                    <p class="pip-title" flex>Share</p>
+                    <md-icon md-svg-icon="icons:chevron-right"></md-icon>
+                </div>
+
+            </md-button>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="start center" class="h48 tm16">
+        <md-button ng-click="onDisableClick()" aria-label="ENABLE">
+            <span ng-if="emptyCompositeViewDisabled">Enable</span>
+            <span ng-if="!emptyCompositeViewDisabled">Disable</span>
+        </md-button>
+    </div>
+
+</div>

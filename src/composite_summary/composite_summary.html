@@ -1,0 +1,76 @@
+<div ng-repeat="item in compositeContent track by $index">
+
+    <!-- for text -->
+    <div class="pip-composite-text" ng-if="item.type == 'text' && item.text">
+        <pip-markdown pip-text="item.text"
+                      pip-line-count="{{textSize}}"
+                      pip-rebind="true"
+                      ng-disabled="true">
+        </pip-markdown>
+    </div>
+    <!-- for pictures -->
+    <div ng-if="item.type == 'pictures' && item.pic_ids.length > 0"
+         ng-class=" compositeContent[$index - 1].type != 'pictures' ?
+                    compositeContent[$index + 1].type != 'pictures' ? 'tm16 bm16' : 'tm16 bm0' :
+                    compositeContent[$index + 1].type != 'pictures' ? 'tm8 bm16' : 'tm8 bm0' "
+         class="pip-composite-pictures">
+        <pip-collage ng-if="rebind"
+                     pip-picture-ids="item.pic_ids"
+                     pip-unique-code="item.id"
+                     pip-multiple="true"
+                     pip-open="disableControl"
+                     pip-rebind="true"
+                     ng-disabled="disableControl">
+        </pip-collage>
+    </div>
+
+    <!-- for documents -->
+    <div ng-if="item.type == 'documents' && item.docs.length > 0"
+         class="pip-composite-documents" layout="row" flex>
+        <pip-document-list flex
+                           pip-documents="item.docs"
+                           pip-rebind="true"
+                           pip-document-icon="true"
+                           pip-collapse="true"
+                           ng-disabled="disableControl">
+        </pip-document-list>
+    </div>
+
+    <!--for checklist -->
+    <div ng-if="item.type == 'checklist' && item.checklist.length > 0"
+         class="pip-composite-checklist">
+        <pip-checklist-view pip-options="item.checklist"
+                            pip-changed="onContentChange()"
+                            pip-rebind="true"
+                            pip-collapse="true"
+                            ng-disabled="disabledChecklist">
+        </pip-checklist-view>
+    </div>
+
+    <!--for location -->
+    <div class="pip-composite-location" layout="row" layout-align="start center" flex
+         ng-if="item.type == 'location' && (item.loc_pos || item.loc_name)">
+
+        <pip-location pip-location-name="item.loc_name"
+                      pip-location-pos="item.loc_pos"
+                      pip-collapse="true"
+                      pip-show-location-icon="true"
+                      ng-disabled="disableControl"
+                      pip-rebind="true" flex>
+        </pip-location>
+    </div>
+
+    <!-- for time -->
+    <div class="pip-composite-time"
+         ng-if="item.type == 'time' && (item.start || item.end)"
+         layout="row" layout-align="start center" flex>
+
+        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>
+        <pip-time-view
+                pip-start-date="item.start"
+                pip-end-date="item.end"
+                pip-rebind="true"
+                ng-disabled="disableControl">
+        </pip-time-view>
+    </div>
+</div>

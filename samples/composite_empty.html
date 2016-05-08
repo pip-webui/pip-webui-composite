@@ -1,0 +1,36 @@
+<div class="app-composite" ng-if="$party">
+    <div class="pip-body">
+        <h2 class="m16">Empty Composite Control</h2>
+        <div>
+            <md-button ng-click="onDisableClick()"  aria-label="ENABLE">
+                <span ng-if="emptyChecklistDisabled">Enable</span>
+                <span ng-if="!emptyChecklistDisabled">Disable</span>
+            </md-button>
+            <md-button ng-click="emptyChecklistRebind = !emptyChecklistRebind" aria-label="REBUILD">
+                <span ng-if="emptyChecklistRebind">Rebind</span>
+                <span ng-if="!emptyChecklistRebind">Not Rebind</span>
+            </md-button>
+            <md-button ng-click="onReset()">
+                <span >Reset</span>
+            </md-button>
+        </div>
+        <pip-composite-toolbar pip-composite-empty="emptyComposite.length == 0"
+                               ng-disabled="isDisabled()"
+                               pip-composite-id="1">
+        </pip-composite-toolbar>
+        <div style="height: 20px;">
+        </div>
+        <pip-composite-edit pip-contents="emptyComposite"
+                            ng-disabled="isDisabled()"
+                            pip-scroll-container=".composite-scroll"
+                            pip-rebind="true"
+                            pip-composite-placeholder="'Add data'"
+                            pip-changed="onChange()"
+                            pip-composite-id="1">
+        </pip-composite-edit>
+
+        <div class="tm16" pip-composite-focused>
+            emptyComposite = {{emptyComposite}}
+        </div>
+    </div>
+</div>

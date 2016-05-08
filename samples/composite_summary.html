@@ -1,0 +1,43 @@
+<div class="app-composite" ng-if="$party">
+    <h2 class="m16">Composite Summary</h2>
+    <pip-composite-summary pip-contents="compositeSummary"
+                           pip-text-size="4"
+                           pip-rebind="true">
+    </pip-composite-summary>
+
+    <h2 class="m16">Composite Summary with checklist</h2>
+    <pip-composite-summary pip-contents="compositeSummarySecondary"
+                           pip-secondary-block-types="['documents', 'time', 'location']"
+                           pip-text-size="4"
+                           pip-checklist-size="3"
+                           pip-rebind="true">
+    </pip-composite-summary>
+
+    <h2 class="m16">Composite summary with non standart primary block</h2>
+    <pip-composite-summary pip-contents="compositeSummarySecondary"
+                           pip-secondary-block-types="['documents', 'checklist', 'location']"
+                           pip-text-size="4"
+                           pip-rebind="true">
+    </pip-composite-summary>
+
+    <h2 class="m16">Composite summary without standart primary block, limit secondary block</h2>
+    <pip-composite-summary pip-contents="compositeSummarySecondary"
+                           pip-secondary-block-limit="4"
+                           pip-text-size="4"
+                           pip-checklist-size="3"
+                           pip-rebind="true">
+    </pip-composite-summary>
+
+    <h2 class="m16">Composite summary with different number viewed block</h2>
+    <pip-composite-summary pip-contents="compositeSummary"
+                           pip-primary-block-limit="2"
+                           pip-text-size="4"
+                           pip-rebind="true">
+    </pip-composite-summary>
+
+    <h2 class="m16">Composite summary with non standart primary block</h2>
+    <pip-composite-summary pip-contents="compositeSummarySecondary"
+                           pip-primary-block-limit="0"
+                           pip-rebind="true">
+    </pip-composite-summary>
+</div>

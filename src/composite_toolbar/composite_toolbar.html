@@ -1,0 +1,58 @@
+<!--
+@file Composite toolbar control content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<div layout="row" layout-align="start start" flex>
+    <md-button class="pip-composite-button"
+               ng-if="!emptyState"
+               ng-class="{ 'remove-item': !emptyState ,
+                                'new-item': !emptyState }"
+               ng-click="onAddItem('text');"
+               aria-label="COMPOSITE-BUTTON-TEXT"
+               ng-disabled="ngDisabled()">
+        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>
+        <md-tooltip>{{::'TEXT'| translate}}</md-tooltip>
+    </md-button>
+    <md-button ng-if="toolbarButton.checklist"
+               ng-click="onAddItem('checklist')"
+               ng-disabled="ngDisabled()"
+               class="pip-composite-button"
+               aria-label="COMPOSITE-BUTTON-CHECKLIST">
+        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>
+        <md-tooltip>{{::'CHECKLIST'| translate}}</md-tooltip>
+    </md-button>
+    <md-button ng-if="toolbarButton.picture"
+               ng-click="onAddItem('pictures')"
+               ng-disabled="ngDisabled()"
+               class="pip-composite-button"
+               aria-label="COMPOSITE-BUTTON-PICTURES">
+        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>
+        <md-tooltip>{{::'PICTURE'| translate}}</md-tooltip>
+    </md-button>
+    <md-button ng-click="onAddItem('documents')"
+               ng-if="toolbarButton.document"
+               ng-disabled="ngDisabled()"
+               class="pip-composite-button"
+               aria-label="COMPOSITE-BUTTON-DOCUMENTS">
+        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>
+        <md-tooltip>{{::'DOCUMENT'| translate}}</md-tooltip>
+    </md-button>
+    <md-button ng-click="onAddItem('location')"
+               ng-if="toolbarButton.location"
+               ng-disabled="ngDisabled()"
+               class="pip-composite-button"
+               aria-label="COMPOSITE-BUTTON-LOCATIONS">
+        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>
+        <md-tooltip>{{::'LOCATION'| translate}}</md-tooltip>
+    </md-button>
+    <md-button ng-click="onAddItem('time')"
+               ng-if="toolbarButton.event"
+               ng-disabled="ngDisabled()"
+               class="pip-composite-button"
+               aria-label="COMPOSITE-BUTTON-TIME">
+        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>
+        <md-tooltip>{{::'TIME'| translate}}</md-tooltip>
+    </md-button>
+
+</div>

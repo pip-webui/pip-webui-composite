@@ -1,0 +1,80 @@
+<div ng-if="$party">
+    <md-card layout="column" flex>
+
+
+        <h2 class="m16">Empty Checklist</h2>
+
+
+
+        <md-card-content  class="p0 m0">
+            <pip-checklist-edit pip-draggable="true"
+                                ng-disabled="isDisabled()"
+                                pip-changed="onChange"
+                                pip-options="emptyChecklist"
+                                pip-rebind="emptyChecklistRebind">
+            </pip-checklist-edit>
+        </md-card-content>
+
+        <md-card-actions >
+            <md-button ng-click="onDisableClick()"  aria-label="ENABLE">
+                <span ng-if="emptyChecklistDisabled">Enable</span>
+                <span ng-if="!emptyChecklistDisabled">Disable</span>
+            </md-button>
+            <md-button ng-click="emptyChecklistRebind = !emptyChecklistRebind" aria-label="REBUILD">
+                <span ng-if="emptyChecklistRebind">Rebind</span>
+                <span ng-if="!emptyChecklistRebind">Not Rebind</span>
+            </md-button>
+            <md-button ng-click="onReset()">
+                <span >Reset</span>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+
+    <!--<md-card layout="column" flex>-->
+        <!--<h2 class="m16">CheckList</h2>-->
+        <!--<md-card-content  class="p0 m0">-->
+            <!--<pip-checklist-edit-->
+                    <!--pip-draggable="true"-->
+                    <!--pip-changed="onChange()"-->
+                    <!--pip-options="checklistDynamic">-->
+            <!--</pip-checklist-edit>-->
+        <!--</md-card-content>-->
+
+        <!--<md-card-actions >-->
+
+        <!--</md-card-actions>-->
+    <!--</md-card>-->
+
+    <!--<md-card layout="column" flex>-->
+        <!--<h2 class="m16">Checklist View is not edit</h2>-->
+        <!--<md-card-content  class="p0 m0">-->
+            <!--<pip-checklist-view pip-options="viewChecklist"-->
+                                <!--ng-disabled="true"-->
+                                <!--pip-rebind="true">-->
+            <!--</pip-checklist-view>-->
+        <!--</md-card-content>-->
+
+        <!--<md-card-actions >-->
+
+        <!--</md-card-actions>-->
+    <!--</md-card>-->
+
+    <!--<md-card layout="column" flex>-->
+        <!--<h2 class="m16">Checklist View Editing</h2>-->
+        <!--<md-card-content class="p0 m0" >-->
+            <!--<pip-checklist-view pip-options="viewChecklistEdit"-->
+                                <!--ng-disabled="isDisabledView()"-->
+                                <!--pip-rebind="true">-->
+            <!--</pip-checklist-view>-->
+        <!--</md-card-content>-->
+
+        <!--<md-card-actions >-->
+            <!--<md-button ng-click="onDisableViewClick()"  aria-label="ENABLE">-->
+                <!--<span ng-if="emptyChecklistViewDisabled">Enable</span>-->
+                <!--<span ng-if="!emptyChecklistViewDisabled">Disable</span>-->
+            <!--</md-button>-->
+        <!--</md-card-actions>-->
+    <!--</md-card>-->
+
+</div>
+

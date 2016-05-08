@@ -1,0 +1,54 @@
+<div ng-controller="ContentSwitchController">
+    <h2 class="bm0">Content Switch Examples</h2>
+    <md-card layout="column" class="md-card-sample" flex>
+        <md-card-content >
+
+            <h2>Press button for show/hide content</h2>
+            <div class="sample-output bm8">
+                <pip-picture-list-edit class="bm8"
+                                       ng-show="showPictures"
+                                       pip-picture-ids="item.pictureIds"
+                                       pip-created="examplePictures = $event.sender">
+                </pip-picture-list-edit>
+
+                <pip-document-list-edit ng-show="showDocuments"
+                                        pip-documents="item.docs"
+                                        pip-created="exampleDocs = $event.sender">
+                </pip-document-list-edit>
+
+                <pip-time-edit class="bm16"
+                               ng-show="showEvent"
+                               pip-start-date="item.start"
+                               pip-end-date="item.end"
+                               pip-start-label="{{'Start time'}}"
+                               pip-end-label="{{'End time'}}">
+                </pip-time-edit>
+
+                <pip-location-edit class="bm16 map-edit"
+                                   ng-show="showLocation"
+                                   pip-location-name="item.loc_name"
+                                   pip-location-pos="item.loc_pos">
+                </pip-location-edit>
+            </div>
+        </md-card-content>
+        <md-card-actions >
+            <div layout="row" layout-align="start center">
+                <div>
+                    <pip-content-switch flex pip-parent-element-name="'.sample-output'">
+                    </pip-content-switch>
+                </div>
+                <div flex></div>
+                <md-button class="md-raised md-primary"
+                           ng-disabled="processing"
+                           ng-click="onShowAll()">
+                    Show All
+                </md-button>
+                <md-button class="md-raised md-primary"
+                           ng-disabled="processing"
+                           ng-click="onHideAll()">
+                    Hide All
+                </md-button>
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>

@@ -1,0 +1,146 @@
+<!--
+@file Composite edit control content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<div class="divider-top">
+    <div class="pip-composite-body"
+         ng-show="compositeContent.length != 0"
+         ng-class="{'drag-active': selected.drag}">
+
+        <div class="pip-composite-item"
+             ng-repeat="obj in compositeContent track by obj.id"
+             ng-mousedown="onClick($event, $index, obj)"
+             ng-class="{'selected-content': isSelectedSection($index, obj),
+                        'composite-animate': !obj.empty && compositeContent.length > 1}"
+             ng-keyup="onKeyUp($event)"
+             ng-keydown="onKeyDown($event, $index, obj)"
+             pip-drag="compositeContent.length > 1 && selected.drag"
+             pip-touch-delay="10"
+             pip-drag-data="obj"
+             pip-scroll-container="pipScrollContainer"
+             pip-drop="true"
+             pip-force-touch = "true"
+             pip-drag-stop="onStop(selected.id)"
+             pip-drag-start="onStart(selected.id)"
+             pip-drop-success="onDropComplete($index, $data, $event, selected.id)"
+             id="{{'composite-item-' + selected.id + '-' + $index}}">
+
+            <!--<div ng-class="{'putt_box': selected.drag}"></div>-->
+            <div class="putt_box"></div>
+            <div class="pip-section-header"
+                 ng-if="!obj.empty"
+                 layout="row" layout-align="start center">
+                <div class="w38"></div>
+                <md-button class="md-icon-button md-icon-button-little icon-rearrange-btn no-ripple-container rm8 cursor-move"
+                           ng-if="!ngDisabled() && compositeContent.length > 1"
+                           pip-drag-handle
+                           pip-mobile-mousedown="onDownDragg($event, obj)"
+                           pip-mobile-mouseup="onDraggEnd()"
+                           tabindex="-1"
+                           aria-label="COMPOSITE-DRAGG"
+                           ng-hide="compositeContent.length == 1">
+                    <md-icon class="composite-icon cursor-move" md-svg-icon="icons:handle"></md-icon>
+                </md-button>
+                <div>
+                    <md-button class="md-icon-button md-icon-button-little rm8"
+                               ng-click="onDeleteItem($index)"
+                               ng-disabled="ngDisabled()"
+                               aria-label="COMPOSITE-DELETE">
+                        <md-icon class="composite-icon" md-svg-icon="icons:cross"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <!--pip-prevent-drag-->
+            <!-- for text -->
+            <div class="pip-section-content rp24-flex lp24-flex tp16 bp16"
+                 ng-if="obj.type == 'text'" pip-cancel-drag="true">
+                <md-input-container class="p0 m0 w-stretch" md-no-float>
+                            <textarea ng-model="obj.text" aria-label="text"
+                                      placeholder="{{ isFirst ? compositePlaceholder : 'TEXT' | translate}}"
+                                      id="{{'composite-item-text-' + selected.id + '-' + $index}}"
+                                      ng-change="onContentChange(obj)"
+                                      pip-cancel-drag="true"
+                                      ng-disabled="ngDisabled()">
+                            </textarea>
+                </md-input-container>
+            </div>
+            <!-- -->
+            <div class="pip-section-content rp24-flex lp24-flex vp20"
+                 ng-if="obj.type == 'pictures'" pip-cancel-drag="true">
+                <pip-picture-list-edit class="w-stretch"
+                                       pip-cancel-drag="true"
+                                       pip-picture-ids="obj.pic_ids"
+                                       pip-changed="onContentChange(obj)"
+                                       pip-created="obj.pictures = $event.sender"
+                                       pip-cancel-drag="true"
+                                       pip-added-picture="addedContent"
+                                       ng-disabled="ngDisabled()">
+                </pip-picture-list-edit>
+            </div>
+            <!-- -->
+            <div class="pip-section-content rp24-flex lp24-flex vp20"
+                 ng-if="obj.type == 'documents'" pip-cancel-drag="true">
+                <pip-document-list-edit class="w-stretch"
+                                        pip-documents="obj.docs"
+                                        pip-cancel-drag="true"
+                                        pip-changed="onContentChange(obj)"
+                                        pip-cancel-drag="true"
+                                        pip-created="obj.documents = $event.sender"
+                                        pip-added-document="addedContent"
+                                        ng-disabled="ngDisabled()">
+                </pip-document-list-edit>
+            </div>
+
+            <div class="pip-section-content"
+                 ng-if="obj.type == 'checklist'" pip-cancel-drag="true"
+                 layout="row" layout-align="start center">
+                <pip-checklist-edit pip-options="obj.checklist"
+                                    pip-draggable="isActiveChecklist(obj)"
+                                    pip-changed="onContentChange(obj)"
+                                    ng-disabled="ngDisabled()"
+                                    pip-scroll-container="{{pipScrollContainer}}"
+                                    pip-rebind="true">
+                </pip-checklist-edit>
+            </div>
+
+            <div class="pip-section-content vp20 rp24-flex lp24-flex"
+                 ng-if="obj.type == 'location'" pip-cancel-drag="true">
+                <pip-location-edit class="pip-location-attachments w-stretch"
+                                   pip-location-name="obj.loc_name"
+                                   pip-location-pos="obj.loc_pos"
+                                   pip-cancel-drag="true"
+                                   pip-location-holder="pipLocationHolder"
+                                   pip-changed="onContentChange(obj)"
+                                   ng-disabled="ngDisabled()">
+                </pip-location-edit>
+            </div>
+            <!-- -->
+            <div class="pip-section-content bp16-flex rp24-flex lp24-flex tp20"
+                 ng-if="obj.type == 'time'" pip-cancel-drag="true">
+                <pip-time-edit class="w-stretch"
+                               pip-start-date="obj.start"
+                               pip-end-date="obj.end"
+                               pip-size="$sizeGtSmall"
+                               pip-changed="onContentChange(obj)"
+                               ng-disabled="ngDisabled()"
+                               pip-start-label="{{ 'COMPOSITE_START_TIME' | translate }}"
+                               pip-end-label="{{ 'COMPOSITE_END_TIME' | translate }}">
+                </pip-time-edit>
+            </div>
+        </div>
+        <div class="pip-composite-item w-stretch"
+             pip-drag="false"
+             pip-drop="true"
+             pip-drop-success="onDropComplete(compositeContent.length, $data, $event, selected.id)"
+             pip-drag-stop="onStop(selected.id)"
+             pip-drag-start="onStart(selected.id)"
+             id="{{'pip-composite-last-' + selected.id}}">
+
+            <!--<div ng-class="{'putt_box': selected.drag}"></div>-->
+            <div class="putt_box"></div>
+            <div class="pip-section-content h24" style="border: 0px!important;">
+            </div>
+        </div>
+    </div>
+</div>

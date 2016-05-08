@@ -1,0 +1,17 @@
+<div class="app-composite" ng-if="$party">
+    <div class="pip-body">
+        <h2 class="m16">Filled Composite Control</h2>
+        <pip-composite-toolbar pip-composite-empty="compositeView.length == 0"
+                               pip-composite-id="2">
+        </pip-composite-toolbar>
+        <div style="height: 20px;">
+        </div>
+        <pip-composite-edit pip-contents="compositeView"
+                            pip-scroll-container=".composite-scroll"
+                            pip-rebind="true"
+                            pip-composite-placeholder="'Add data'"
+                            pip-added-content="true"
+                            pip-composite-id="2">
+        </pip-composite-edit>
+    </div>
+</div>
