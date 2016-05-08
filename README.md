@@ -1,4 +1,4 @@
-# Pip.WebUI Connected Controls http://git.pipdevs.com/pip-webui/pip-webui-connected
+# Pip.WebUI Connected Controls http://github.com/pip-webui/pip-webui-connected
 
 Web controls that depend on specific server side and can be used in applications on the top of Pip.Services platform
 
@@ -90,12 +90,12 @@ Change to your project's root directory.
 
 ```bash
 # To install only core services with dependencies.
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-core.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-controls.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-rest.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-connected.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-core.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-controls.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-rest.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-connected.git
 
 # To install the entire pip-webui library
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui.git
+npm install git+ssh://git@github.com:pip-core/pip-webui.git
 ```
