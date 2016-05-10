@@ -1,31 +1,3 @@
-/**
- * @file Registration of composite WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipComposite', [        
-        'pipContentSwitch',
-        'pipChecklistEdit',
-        'pipChecklistView',
-        'pipCompositeEdit',
-        'pipCompositeView',
-        'pipCompositeSummary',
-        'pipCompositeToolbar',
-        'pipCompositeFocused',
-
-        'pipMobileMouseup',
-        'pipMobileMousedown'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipComposite.Templates');
@@ -327,94 +299,6 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_summary/composite_summary.html',
-    '<div ng-repeat="item in compositeContent track by $index">\n' +
-    '\n' +
-    '    <!-- for text -->\n' +
-    '    <div class="pip-composite-text" ng-if="item.type == \'text\' && item.text">\n' +
-    '        <pip-markdown pip-text="item.text"\n' +
-    '                      pip-line-count="{{textSize}}"\n' +
-    '                      pip-rebind="true"\n' +
-    '                      ng-disabled="true">\n' +
-    '        </pip-markdown>\n' +
-    '    </div>\n' +
-    '    <!-- for pictures -->\n' +
-    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
-    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
-    '         class="pip-composite-pictures">\n' +
-    '        <pip-collage ng-if="rebind"\n' +
-    '                     pip-picture-ids="item.pic_ids"\n' +
-    '                     pip-unique-code="item.id"\n' +
-    '                     pip-multiple="true"\n' +
-    '                     pip-open="disableControl"\n' +
-    '                     pip-rebind="true"\n' +
-    '                     ng-disabled="disableControl">\n' +
-    '        </pip-collage>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for documents -->\n' +
-    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
-    '         class="pip-composite-documents" layout="row" flex>\n' +
-    '        <pip-document-list flex\n' +
-    '                           pip-documents="item.docs"\n' +
-    '                           pip-rebind="true"\n' +
-    '                           pip-document-icon="true"\n' +
-    '                           pip-collapse="true"\n' +
-    '                           ng-disabled="disableControl">\n' +
-    '        </pip-document-list>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for checklist -->\n' +
-    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
-    '         class="pip-composite-checklist">\n' +
-    '        <pip-checklist-view pip-options="item.checklist"\n' +
-    '                            pip-changed="onContentChange()"\n' +
-    '                            pip-rebind="true"\n' +
-    '                            pip-collapse="true"\n' +
-    '                            ng-disabled="disabledChecklist">\n' +
-    '        </pip-checklist-view>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for location -->\n' +
-    '    <div class="pip-composite-location" layout="row" layout-align="start center" flex\n' +
-    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
-    '\n' +
-    '        <pip-location pip-location-name="item.loc_name"\n' +
-    '                      pip-location-pos="item.loc_pos"\n' +
-    '                      pip-collapse="true"\n' +
-    '                      pip-show-location-icon="true"\n' +
-    '                      ng-disabled="disableControl"\n' +
-    '                      pip-rebind="true" flex>\n' +
-    '        </pip-location>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for time -->\n' +
-    '    <div class="pip-composite-time"\n' +
-    '         ng-if="item.type == \'time\' && (item.start || item.end)"\n' +
-    '         layout="row" layout-align="start center" flex>\n' +
-    '\n' +
-    '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
-    '        <pip-time-view\n' +
-    '                pip-start-date="item.start"\n' +
-    '                pip-end-date="item.end"\n' +
-    '                pip-rebind="true"\n' +
-    '                ng-disabled="disableControl">\n' +
-    '        </pip-time-view>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_view/composite_view.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -605,6 +489,122 @@ module.run(['$templateCache', function($templateCache) {
     '</md-button>\'');
 }]);
 })();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_summary/composite_summary.html',
+    '<div ng-repeat="item in compositeContent track by $index">\n' +
+    '\n' +
+    '    <!-- for text -->\n' +
+    '    <div class="pip-composite-text" ng-if="item.type == \'text\' && item.text">\n' +
+    '        <pip-markdown pip-text="item.text"\n' +
+    '                      pip-line-count="{{textSize}}"\n' +
+    '                      pip-rebind="true"\n' +
+    '                      ng-disabled="true">\n' +
+    '        </pip-markdown>\n' +
+    '    </div>\n' +
+    '    <!-- for pictures -->\n' +
+    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
+    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
+    '         class="pip-composite-pictures">\n' +
+    '        <pip-collage ng-if="rebind"\n' +
+    '                     pip-picture-ids="item.pic_ids"\n' +
+    '                     pip-unique-code="item.id"\n' +
+    '                     pip-multiple="true"\n' +
+    '                     pip-open="disableControl"\n' +
+    '                     pip-rebind="true"\n' +
+    '                     ng-disabled="disableControl">\n' +
+    '        </pip-collage>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for documents -->\n' +
+    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
+    '         class="pip-composite-documents" layout="row" flex>\n' +
+    '        <pip-document-list flex\n' +
+    '                           pip-documents="item.docs"\n' +
+    '                           pip-rebind="true"\n' +
+    '                           pip-document-icon="true"\n' +
+    '                           pip-collapse="true"\n' +
+    '                           ng-disabled="disableControl">\n' +
+    '        </pip-document-list>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for checklist -->\n' +
+    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
+    '         class="pip-composite-checklist">\n' +
+    '        <pip-checklist-view pip-options="item.checklist"\n' +
+    '                            pip-changed="onContentChange()"\n' +
+    '                            pip-rebind="true"\n' +
+    '                            pip-collapse="true"\n' +
+    '                            ng-disabled="disabledChecklist">\n' +
+    '        </pip-checklist-view>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for location -->\n' +
+    '    <div class="pip-composite-location" layout="row" layout-align="start center" flex\n' +
+    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
+    '\n' +
+    '        <pip-location pip-location-name="item.loc_name"\n' +
+    '                      pip-location-pos="item.loc_pos"\n' +
+    '                      pip-collapse="true"\n' +
+    '                      pip-show-location-icon="true"\n' +
+    '                      ng-disabled="disableControl"\n' +
+    '                      pip-rebind="true" flex>\n' +
+    '        </pip-location>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for time -->\n' +
+    '    <div class="pip-composite-time"\n' +
+    '         ng-if="item.type == \'time\' && (item.start || item.end)"\n' +
+    '         layout="row" layout-align="start center" flex>\n' +
+    '\n' +
+    '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
+    '        <pip-time-view\n' +
+    '                pip-start-date="item.start"\n' +
+    '                pip-end-date="item.end"\n' +
+    '                pip-rebind="true"\n' +
+    '                ng-disabled="disableControl">\n' +
+    '        </pip-time-view>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+/**
+ * @file Registration of composite WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipComposite', [        
+        'pipContentSwitch',
+        'pipChecklistEdit',
+        'pipChecklistView',
+        'pipCompositeEdit',
+        'pipCompositeView',
+        'pipCompositeSummary',
+        'pipCompositeToolbar',
+        'pipCompositeFocused',
+
+        'pipMobileMouseup',
+        'pipMobileMousedown'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Checklist edit control
@@ -1821,98 +1821,6 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 /**
- * @file Content switch control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Remove after composite content control is ready
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
-
-    thisModule.directive('pipContentSwitch', 
-        ['$parse', function($parse) {
-            return {
-                restrict: 'EA',
-                scope: false,
-                templateUrl: 'content_switch/content_switch.html',
-                link: function($scope, $element, $attrs) {
-    
-                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
-                    var parentElement = parentElementNameGetter($scope);
-
-                    $scope.onButtonClick = onButtonClick;
-
-                    // Initialization
-                    setOption();
-                    $element.addClass('pip-content-switch');
-
-                    return ;
-
-                    function scrollTo(childElement) {
-                        setTimeout(function () {
-                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
-                            if (modDiff < 20) return;
-                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
-                            $(parentElement).animate({
-                                scrollTop: scrollTo + 'px'
-                            }, 300);
-                        }, 100);
-                    };
-    
-                    function setOption() {
-                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
-                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
-                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
-                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
-                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
-                        } else {
-                            $scope.showIconPicture = true;
-                            $scope.showIconDocument = true;
-                            $scope.showIconLocation = true;
-                            $scope.showIconEvent = true;
-                        }
-                    };
-    
-                    function onButtonClick(type) {
-                        if (!parentElement) return;
-    
-                        switch(type){
-                            case 'event':
-                                // On Event click action
-                                if ($scope.showEvent)
-                                    scrollTo('.event-edit');
-                                break;
-                            case 'documents':
-                                // On Documents click action
-                                if ($scope.showDocuments)
-                                    scrollTo('.pip-document-list-edit');
-                                break;
-                            case 'pictures':
-                                // On Pictures click action
-                                if ($scope.showPictures)
-                                    scrollTo('.pip-picture-list-edit');
-                                break;
-                            case 'location':
-                                // On Location click action
-                                if ($scope.showLocation)
-                                    scrollTo('.pip-location-edit');
-                                break;
-                        };
-                    };
-
-                }
-            };
-        }]
-    );
-
-})();
-
-/**
  * @file Composite view control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2016,6 +1924,98 @@ module.run(['$templateCache', function($templateCache) {
                 $scope.compositeContent = [];
             };
 
+        }]
+    );
+
+})();
+
+/**
+ * @file Content switch control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Remove after composite content control is ready
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
+
+    thisModule.directive('pipContentSwitch', 
+        ['$parse', function($parse) {
+            return {
+                restrict: 'EA',
+                scope: false,
+                templateUrl: 'content_switch/content_switch.html',
+                link: function($scope, $element, $attrs) {
+    
+                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
+                    var parentElement = parentElementNameGetter($scope);
+
+                    $scope.onButtonClick = onButtonClick;
+
+                    // Initialization
+                    setOption();
+                    $element.addClass('pip-content-switch');
+
+                    return ;
+
+                    function scrollTo(childElement) {
+                        setTimeout(function () {
+                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
+                            if (modDiff < 20) return;
+                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
+                            $(parentElement).animate({
+                                scrollTop: scrollTo + 'px'
+                            }, 300);
+                        }, 100);
+                    };
+    
+                    function setOption() {
+                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
+                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
+                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
+                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
+                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
+                        } else {
+                            $scope.showIconPicture = true;
+                            $scope.showIconDocument = true;
+                            $scope.showIconLocation = true;
+                            $scope.showIconEvent = true;
+                        }
+                    };
+    
+                    function onButtonClick(type) {
+                        if (!parentElement) return;
+    
+                        switch(type){
+                            case 'event':
+                                // On Event click action
+                                if ($scope.showEvent)
+                                    scrollTo('.event-edit');
+                                break;
+                            case 'documents':
+                                // On Documents click action
+                                if ($scope.showDocuments)
+                                    scrollTo('.pip-document-list-edit');
+                                break;
+                            case 'pictures':
+                                // On Pictures click action
+                                if ($scope.showPictures)
+                                    scrollTo('.pip-picture-list-edit');
+                                break;
+                            case 'location':
+                                // On Location click action
+                                if ($scope.showLocation)
+                                    scrollTo('.pip-location-edit');
+                                break;
+                        };
+                    };
+
+                }
+            };
         }]
     );
 
