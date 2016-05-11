@@ -39,7 +39,7 @@
     );
 
     thisModule.controller('pipChecklistEditController',
-        function ($scope, $element, $attrs, pipUtils, $rootScope) {
+        function ($scope, $element, $attrs, $document,pipUtils, $rootScope) {
 
             $scope.selected = {};
             $scope.selected.index = 0;
@@ -93,6 +93,27 @@
 
             return;
 
+            function getCaret(el) {
+                if (el.selectionStart) {
+                    return el.selectionStart;
+                } else if ($document.selection) {
+                    el.focus();
+
+                    var r = $document.selection.createRange();
+                    if (r == null) {
+                        return 0;
+                    }
+
+                    var re = el.createTextRange(),
+                        rc = re.duplicate();
+                    re.moveToBookmark(r.getBookmark());
+                    rc.setEndPoint('EndToStart', re);
+
+                    return rc.text.length;
+                }
+                return 0;
+            }
+
             function isDisabled() {
                 if ($scope.ngDisabled) {
                     return $scope.ngDisabled();
@@ -117,6 +138,24 @@
                 return $scope.selected.index == index && $scope.pipDraggable && !empty;
             };
 
+            function setSelectionRange(input, selectionStart, selectionEnd) {
+                if (input.setSelectionRange) {
+                    input.focus();
+                    input.setSelectionRange(selectionStart, selectionEnd);
+                }
+                else if (input.createTextRange) {
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', selectionEnd);
+                    range.moveStart('character', selectionStart);
+                    range.select();
+                }
+            }
+
+            function setCaretToPos (input, pos) {
+                setSelectionRange(input, pos, pos);
+            }
+
             function onTextareaKeyDown($event, index, item) {
                 if (isDisabled()) return;
                 if ($scope.selected.index == -1) return;
@@ -126,14 +165,41 @@
                     if ($event) $event.stopPropagation();
                     return false;
                 }
+
+                if ($event && $event.target) {
+                    // calculate caret position
+                    var posCaret = getCaret($event.target);
+                    // calculate textarea length
+                    if ($event.target.value !== undefined)
+                        var textareaLength = $event.target.value.length;
+                }
+
                 //press enter - create new item
                 if (($event.keyCode == 13 || $event.keyCode == 45) && !$event.ctrlKey && !$event.shiftKey) {  // insert
-                    if ($event) $event.stopPropagation();
-                    if ($event) $event.preventDefault();
+                    if (posCaret !== undefined && posCaret == 0) {
+                        // add item before current item
+                        if ($scope.selected.index > 0) addItem('', $scope.selected.index - 1);
+                        else  {
+                            $scope.selected.index = -1;
+                            addItem('', -1);
+                        }
+                        if ($event) $event.stopPropagation();
+                        if ($event) $event.preventDefault();
 
-                    if (!item.empty) {
-                        addItem('', $scope.selected.index);
+                        return false;
                     }
+
+                    if (textareaLength && posCaret && textareaLength == posCaret) {
+                        // add item after current item
+                        if (!item.empty) {
+                            addItem('', $scope.selected.index);
+                        }
+                        if ($event) $event.stopPropagation();
+                        if ($event) $event.preventDefault();
+                        return false;
+                    }
+
+                    if ($event) $event.preventDefault();
                     return false;
                 }
 
@@ -141,13 +207,21 @@
                 if ($scope.checklistContent.length > 1 && $event.keyCode == 38 && !$event.ctrlKey && !$event.shiftKey) {  // insert
                     if ($event) $event.stopPropagation();
                     if ($event) $event.preventDefault();
-                    if ($scope.selected.index == 0) {
-                        $scope.selected.index = $scope.checklistContent.length - 1;
-                        setFocus();
+
+                    if (posCaret !== undefined && textareaLength !== undefined && posCaret == textareaLength) {
+                        // move to new item
+                        if ($scope.selected.index == 0) {
+                            $scope.selected.index = $scope.checklistContent.length - 1;
+                            setFocus(0);
+                        } else {
+                            $scope.selected.index -= 1;
+                            setFocus(0);
+                        }
                     } else {
-                        $scope.selected.index -= 1;
-                        setFocus();
+                        // move caret to text end
+                        setFocus(textareaLength);
                     }
+
                     return false;
                 }
 
@@ -155,13 +229,21 @@
                 if ($scope.checklistContent.length > 1 && $event.keyCode == 40 && !$event.ctrlKey && !$event.shiftKey) {  // insert
                     if ($event) $event.stopPropagation();
                     if ($event) $event.preventDefault();
-                    if ($scope.selected.index >= $scope.checklistContent.length - 1) {
-                        $scope.selected.index = 0;
-                        setFocus();
+
+                    if (posCaret !== undefined && textareaLength !== undefined && posCaret == textareaLength) {
+                        // move to new item
+                        if ($scope.selected.index >= $scope.checklistContent.length - 1) {
+                            $scope.selected.index = 0;
+                            setFocus(0);
+                        } else {
+                            $scope.selected.index += 1;
+                            setFocus(0);
+                        }
                     } else {
-                        $scope.selected.index += 1;
-                        setFocus();
+                        // move caret to text end
+                        setFocus(textareaLength);
                     }
+
                     return false;
                 }
 
@@ -328,10 +410,13 @@
                 }
             };
 
-            function setFocus() {
+            function setFocus(toPos) {
                 setTimeout(function () {
                     var nextElement = angular.element('#check-item-text-' + $scope.selected.id + '-' + $scope.selected.index);
-                    if (nextElement) nextElement.focus();
+                    if (nextElement) {
+                        nextElement.focus();
+                        if (toPos !== undefined && nextElement[0]) setCaretToPos(nextElement[0], toPos);
+                    }
                 },  50);
             };
 
