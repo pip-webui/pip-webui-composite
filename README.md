@@ -1,30 +1,26 @@
-# Pip.WebUI Connected Controls http://github.com/pip-webui/pip-webui-connected
+# Pip.WebUI Composite Controls
 
-Web controls that depend on specific server side and can be used in applications on the top of Pip.Services platform
+Advanced content editor web controls built to work with the [Pip.Services platform](https://github.com/pip-services)
 
-The module contains the following functionality:
+This module contains the following functionality:
 
-* Picture viewing and editing controls: Picture, Avatar, Collage, Picture List 
-* Document viewing and editing controls
-* Data formatting utilities and filters
-* Composite content control 
-* Tags editing and selection controls
-* Party editing and selection controls
-* Controls to manage priority and status  
-
-In the version 1.0.0 the implementation was cleaned up and covered with unit tests.
-Implementation became fully portable across browser and devices. 
+* Checklist editor/viewer
+* Composite content editor/viewer (supporting text, checklists, pictures, documents, locations and time)
 
 Quick Links:
 
+* [Samples](#samples)
 * [Documentation](#documentation)
 * [Contributing](#contributing)
 * [Building](#building)
 * [Installing](#installing)
 
+## <a name="samples"></a> Samples
+Samples are available at [webui.pipdevs.com](http://webui.pipdevs.com/pip-webui-composite).
+
 ## <a name="documentation"></a> Online Documentation
 
-- Visit [documentation](doc/index.md) page
+- Visit [wiki](https://github.com/pip-webui/pip-webui-composite/wiki) page for API documentation
 - Or build the project, launch and open samples; see [Building](#building) for details
    
 ## <a name="contributing"></a> Contributing
@@ -51,8 +47,6 @@ itemize all:
 
 Developers can easily build the project using NPM and gulp.
 
-* [Builds - Under the Hood](docs/guides/BUILD.md)
-
 First install or update your local project's **npm** tools:
 
 ```bash
@@ -73,29 +67,32 @@ gulp clean
 gulp build
 
 # To launch samples (build will open samples/index page in web browser)
-gulp launch
+gulp samples-launch
 ```
-
-For more details on how the build process works and additional commands (available for testing and
-debugging) developers should read the [Build Instructions](docs/guides/BUILD.md).
 
 ## <a name="installing"></a> Installing Build (Distribution Files)
 
 #### NPM
 
-Core services have dependency on 3rd party libraries included into pip-webui-lib library.
+pip-webui-composite services have dependency on 3rd party libraries included into pip-webui-lib library.
 Also the entire Pip WebUI framework is packaged into pip-webui library.
 
 Change to your project's root directory.
 
 ```bash
-# To install only core services with dependencies.
-npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-core.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-controls.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-rest.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-connected.git
+# To install only pip-webui-composite services with dependencies.
+npm install git+ssh://git@github.com:pip-webui/pip-webui-composite.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-tasks.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-lib.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-css.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-core.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-rest.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-test.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-controls.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-pictures.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-documents.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-locations.git
 
 # To install the entire pip-webui library
-npm install git+ssh://git@github.com:pip-core/pip-webui.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui.git
 ```
