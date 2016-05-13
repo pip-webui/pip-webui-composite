@@ -31,7 +31,7 @@
 
     thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider, $mdThemingProvider) {
 
-            $mdIconProvider.iconSet('icons', '../../node_modules/pip-webui-css/dist/images/icons.svg', 512);
+            $mdIconProvider.iconSet('icons', '../node_modules/pip-webui-css/dist/images/icons.svg', 512);
 
 
             // String translations
@@ -111,25 +111,25 @@
 
             function onLanguageClick(language) {
                 pipTranslate.use(language);
-            };
+            }
 
             function onThemeClick(theme) {
                 $rootScope.$theme = theme;
                 pipTheme.setCurrentTheme(theme);
-            };
+            }
 
             function onSwitchPage(state) {
                 $mdSidenav('left').close();
                 $state.go(state);
-            };
+            }
 
             function onToggleMenu() {
                 $mdSidenav('left').toggle();
-            };
+            }
 
             function isActiveState(state) {
                 return $state.current.name == state;
-            };
+            }
 
             function openConnection() {
                 $rootScope.$routing = true;
@@ -155,8 +155,7 @@
                         pipToasts.showError('Failed to signed in');
                     }
                 );
-            };
-
+            }
         }
     );
 
