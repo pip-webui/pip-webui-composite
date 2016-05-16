@@ -10,18 +10,33 @@
 
     <link rel="stylesheet" href="../../lib/pip-webui-lib.css"/>
     <link rel="stylesheet" href="../../lib/pip-webui-css.css"/>
+    <link rel="stylesheet" href="../../lib/pip-webui-layouts.css"/>
     <link rel="stylesheet" href="../../lib/pip-webui-controls.css"/>
     <link rel="stylesheet" href="../../lib/pip-webui-documents.css"/>
     <link rel="stylesheet" href="../../lib/pip-webui-pictures.css"/>
     <link rel="stylesheet" href="../../lib/pip-webui-locations.css"/>
     <link rel="stylesheet" href="../../dist/pip-webui-composite.css"/>
     <link rel="stylesheet" href="../styles/styles.css"/>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    
+     <style>
+        .pip-routing-progress {
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            z-index: 99999;
+        }
+    </style>
 
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="https://www.google.com/jsapi"></script>
     <script src="../../lib/pip-webui-lib.js"></script>
     <script src="../../lib/pip-webui-lib-test.js"></script>
     <script src="../../lib/pip-webui-core.js"></script>
+    <script src="../../lib/pip-webui-layouts.js"></script>    
     <script src="../../lib/pip-webui-rest.js"></script>
     <script src="../../lib/pip-webui-test.js"></script>
     <script src="../../lib/pip-webui-controls.js"></script>
@@ -95,7 +110,22 @@
             <div ui-view></div>            
         </md-content>
     </div>
+    
     <pip-routing-progress>
+        <div class="pip-loading-progress">
+            <div class="layout-align-center-center layout-column pip-progress-bg">
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <img src="images/Logo_animation.svg"  height="40" width="40" class="pip-img">
+                <img src="images/Logo.svg"  height="40" width="40" class="pip-img fix-ie">
+                <div class="pip-title">Loading Pip.Life... </div>
+            </div>
+        </div>
     </pip-routing-progress>
+    <!--<pip-routing-progress>
+    </pip-routing-progress>-->
 </body>
 </html>

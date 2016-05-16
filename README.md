@@ -86,6 +86,7 @@ npm install git+ssh://git@github.com:pip-webui/pip-webui-tasks.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-lib.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-css.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-core.git
+npm install git+ssh://git@github.com:pip-webui/pip-webui-layouts.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-rest.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-test.git
 npm install git+ssh://git@github.com:pip-webui/pip-webui-controls.git
