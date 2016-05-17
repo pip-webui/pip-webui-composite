@@ -238,18 +238,20 @@
                     if ($event) $event.stopPropagation();
                     if ($event) $event.preventDefault();
 
-                    if (posCaret !== undefined && textareaLength !== undefined && posCaret == textareaLength) {
+                    if (posCaret !== undefined && textareaLength !== undefined && posCaret == 0) {
                         // move to new item
                         if ($scope.selected.index == 0) {
                             $scope.selected.index = $scope.checklistContent.length - 1;
-                            setFocus($scope.selected.index, 0);
+                            var position =  $scope.checklistContent[$scope.selected.index].text.length;
+                            setFocus($scope.selected.index, position);
                         } else {
                             $scope.selected.index -= 1;
-                            setFocus($scope.selected.index, 0);
+                            var position =  $scope.checklistContent[$scope.selected.index].text.length;
+                            setFocus($scope.selected.index, position);
                         }
                     } else {
                         // move caret to text end
-                        setFocus($scope.selected.index, textareaLength);
+                        setFocus($scope.selected.index, 0);
                     }
 
                     return false;
