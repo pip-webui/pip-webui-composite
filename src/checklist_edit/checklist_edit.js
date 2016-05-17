@@ -223,6 +223,8 @@
                             newItem = item.text.substring(posCaret);
                             item.text = valueCurrent;
                             addItem(newItem, $scope.selected.index);
+                            
+                            setFocus($scope.selected.index, 0);
                         }
                         if ($event) $event.stopPropagation();
                         if ($event) $event.preventDefault();
@@ -234,7 +236,7 @@
                 }
 
                 // move cursor up
-                if ($scope.checklistContent.length > 1 && $event.keyCode == 38 && !$event.ctrlKey && !$event.shiftKey) {  // insert
+                if ((posCaret === 0 || posCaret == textareaLength) && $scope.checklistContent.length > 1 && $event.keyCode == 38 && !$event.ctrlKey && !$event.shiftKey) {  // insert
                     if ($event) $event.stopPropagation();
                     if ($event) $event.preventDefault();
 
@@ -258,7 +260,7 @@
                 }
 
                 // move cursor down
-                if ($scope.checklistContent.length > 1 && $event.keyCode == 40 && !$event.ctrlKey && !$event.shiftKey) {  // insert
+                if ((posCaret === 0 || posCaret == textareaLength) && $scope.checklistContent.length > 1 && $event.keyCode == 40 && !$event.ctrlKey && !$event.shiftKey) {  // insert
                     if ($event) $event.stopPropagation();
                     if ($event) $event.preventDefault();
 
