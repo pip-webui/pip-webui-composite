@@ -51,7 +51,6 @@
                 $scope.$watchCollection('pipContents', function (newValue) {
                     if (!Array.isArray($scope.pipContents)) {
                         throw new Error('Error: Attribute pip-contents must be array!');
-                        return;
                     }
                     generateList($scope.pipContents);
                 });
@@ -67,7 +66,12 @@
                 if (!val) return;
                 _.each(content, function(item) {
                     if (item && item.type == 'checklist') {
+                        var checklistLength = item.checklist.length;
                         item.checklist =_.take(item.checklist, val);
+                        if (checklistLength > val) item.checklist.push({
+                            text: '...',
+                             checked: false
+                        });
                     }
                 });
             };
@@ -110,9 +114,10 @@
                     clearList();
                     return;
                 } else {
-                    var result = selectSummary(content);
+                     var summaryContent = _.cloneDeep(content);
+                    var result = selectSummary(summaryContent);
                     if (result.length == 0) {
-                        result = selectSummarySecondary(content, $scope.secondaryBlockTypes);
+                        result = selectSummarySecondary(summaryContent, $scope.secondaryBlockTypes);
                     }
 
                     limitChecklist(result, $scope.checklistSize);
