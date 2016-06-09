@@ -34,7 +34,7 @@
     "pip-webui-lib": "git+ssh://git@github.com:pip-webui/pip-webui-lib.git",
     "pip-webui-css": "git+ssh://git@github.com:pip-webui/pip-webui-css.git",
     "pip-webui-core": "git+ssh://git@github.com:pip-webui/pip-webui-core.git",
-        "pip-webui-layouts": "git+ssh://git@github.com:pip-webui/pip-webui-layouts.git",
+    "pip-webui-layouts": "git+ssh://git@github.com:pip-webui/pip-webui-layouts.git",
     "pip-webui-rest": "git+ssh://git@github.com:pip-webui/pip-webui-rest.git",
     "pip-webui-test": "git+ssh://git@github.com:pip-webui/pip-webui-test.git",
     "pip-webui-controls": "git+ssh://git@github.com:pip-webui/pip-webui-controls.git",
@@ -65,6 +65,7 @@
     "gulp-replace": "*",
     "gulp-add-src": "*",
     "gulp-webserver": "*",
-    "gulp-awspublish": "*"
+    "gulp-awspublish": "*",
+    "gulp-ngdocs": "*"
   }
 }
