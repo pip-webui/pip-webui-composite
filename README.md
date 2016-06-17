@@ -28,8 +28,12 @@ Implementation became fully portable across browser and devices.
 
 * [Module dependencies](#dependencies)
 * [Components](#components)
-  - [Checklist editor/viewer](#checklist_edit)
-  - [Composite content editor/viewer](#composite_content_editor)
+  - [Checklist editor/viewer control](#checklist_editor)
+  - [Composite view](#composite_view)
+  - [Composite summary](#composite_summary)
+  - [Composite toolbar](#composite_toolbar)
+  - [Composite switcher](#content_switch)
+  - [Mouseup/mousedown directive](#mouseevents)
 * [Browsers compatibility](#compatibility)
 * [Community](#community)
 * [Contributing](#contributing)
@@ -68,7 +72,7 @@ Checklist editor/viewer control [API reference](http://link.com)
 
 <br/>
 
-### <a name="content_switch"></a>Composite view
+### <a name="composite_view"></a>Composite view
 <a href="doc/images/img-composite-view.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-composite-view.png"/>
 </a>
@@ -82,7 +86,7 @@ Composite view [API reference](http://link.com)
 
 <br/>
 
-### <a name="content_switch"></a>Composite summary
+### <a name="composite_summary"></a>Composite summary
 <a href="doc/images/img-composite-summary.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-composite-summary.png"/>
 </a>
@@ -96,7 +100,7 @@ Composite summary [API reference](http://link.com)
 
 <br/>
 
-### <a name="content_switch"></a>Composite toolbar
+### <a name="composite_toolbar"></a>Composite toolbar
 <a href="doc/images/img-composite-toolbar.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-composite-toolbar.png"/>
 </a>
@@ -125,7 +129,7 @@ Content switch control [API reference](http://link.com)
 <br/>
 
 
-### <a name="content_switch"></a>Mouseup/mousedown directive
+### <a name="mouseevents"></a>Mouseup/mousedown directive
 
 This directive accept to attach a callback on any blocks invoked by the same name mobile event.
 Example of usage is below:
