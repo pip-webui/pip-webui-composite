@@ -3,6 +3,17 @@
 
     var thisModule = angular.module('appComposite.Checklist', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            EMPTY: 'Empty',
+            CHECK_LIST_VIEW: 'Checklist view'
+        });
+        pipTranslateProvider.translations('ru', {
+            EMPTY: 'Пустой',
+            CHECK_LIST_VIEW: 'Просмотр checklist'
+        });
+    });
+
     thisModule.controller('ChecklistController',
         function ($scope, pipEnums, pipTestContent, pipAppBar) {
 

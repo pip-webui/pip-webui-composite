@@ -108,9 +108,6 @@
                 }
             ];
 
-            // Connect to server
-            // openConnection();
-
             $scope.selected = {};
             $timeout(function () {
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
@@ -132,31 +129,10 @@
                 }
             };
 
-            function openConnection() {
-                $rootScope.$routing = true;
-                pipSession.signin(
-                    {
-                        serverUrl: $scope.serverUrl,
-                        email: $scope.sampleAccount.email,
-                        password: $scope.sampleAccount.password
-                    },
-                    function (user) {
-                        $rootScope.$party = {
-                            id: user.id,
-                            name: user.name
-                        };
-                        $rootScope.$user = user;
-                        $rootScope.$theme = user.theme;
-                        $rootScope.$routing = false;
-                        pipTheme.setCurrentTheme($rootScope.$theme);
-                        pipToasts.showNotification('Signed in as ' + user.name, ['ok'])
-                    },
-                    function (err) {
-                        $rootScope.$routing = false;
-                        pipToasts.showError('Failed to signed in');
-                    }
-                );
-            }
+            $scope.isEntryPage = function () {
+                return $state.current.name === 'signin' || $state.current.name === 'signup' ||
+                    $state.current.name === 'recover_password' || $state.current.name === 'post_signup';
+            };
         }
     );
 

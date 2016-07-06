@@ -41,12 +41,14 @@
             // String translations
             pipTranslateProvider.translations('en', {
                 COMPOSITE_CONTROLS: 'Composite controls',
-                SIGNOUT: 'Sign out'
+                SIGNOUT: 'Sign out',
+                SAMPLE: 'sample'
             });
 
             pipTranslateProvider.translations('ru', {
                 COMPOSITE_CONTROLS: 'Composite контролы',
-                SIGNOUT: 'Выйти'
+                SIGNOUT: 'Выйти',
+                SAMPLE: 'пример'
             });
 
             for (i = 0; i < content.length; i++) {
