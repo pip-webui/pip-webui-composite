@@ -1,64 +1,132 @@
-<div class="app-composite" ng-if="$party">
-    <h2 class="m16">Composite View</h2>
+<h2 class="text-title tm0 bm24">Composite View {{ 'SAMPLE' | translate }}</h2>
 
-    <div class="composite big-sample-output">
-        <pip-composite-view pip-contents="compositeView"
-                            ng-disabled="isDisabled()"
-                            pip-rebind="true">
-        </pip-composite-view>
-
-        <div class="pip-ref-expander" layout="row" layout-align="start center">
-            <md-button flex>
-                <div layout="row" layout-align="start center">
-                    <img src="https://pp.vk.me/c7011/v7011865/1153b/t6q_l-LGOf4.jpg" class="pip-pic-sm"
-                         ng-click="showAlert($event)">
-
-                    <div class="pip-content" flex>
-                        <p class="pip-title">{{item.name}}</p>
-
-                        <p class="pip-subtitle">{{item.status1}} {{item.status2}}</p>
-                    </div>
-                    <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
-                </div>
-            </md-button>
-        </div>
-        <div class="pip-ref-expander" layout="row" layout-align="start center">
-            <md-button flex>
-                <div layout="row" layout-align="start center">
-                    <img src="https://pp.vk.me/c7011/v7011865/1153b/t6q_l-LGOf4.jpg" class="pip-pic-sm"
-                         ng-click="showAlert($event)">
-
-                    <div class="pip-content" flex>
-                        <p class="pip-title">
-                            <md-icon md-svg-icon="icons:forward-all"></md-icon>
-                            {{item.name}}
-                        </p>
-                        <p class="pip-subtitle">
-                            <md-icon md-svg-icon="icons:world"></md-icon>
-                            <span>{{item.status1}}</span>
-                        </p>
-                    </div>
-                    <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
-                </div>
-            </md-button>
-        </div>
-        <div class="pip-drilldown-list">
-            <md-button class="pip-drilldown-list-item">
-                <div class="pip-content">
-                    <md-icon md-svg-icon="icons:document" class="pip-icon"></md-icon>
-                    <p class="pip-title" flex>Share</p>
-                    <md-icon md-svg-icon="icons:chevron-right"></md-icon>
-                </div>
-
-            </md-button>
-        </div>
-    </div>
-
-    <div layout="row" layout-align="start center" class="h48 tm16">
-        <md-button ng-click="onDisableClick()" aria-label="ENABLE">
-            <span ng-if="emptyCompositeViewDisabled">Enable</span>
-            <span ng-if="!emptyCompositeViewDisabled">Disable</span>
-        </md-button>
-    </div>
-
+<div class="composite big-sample-output">
+    <pip-composite-view pip-contents="compositeView"
+                        ng-disabled="isDisabled()"
+                        pip-rebind="true">
+    </pip-composite-view>
 </div>
+
+<div layout="row" layout-align="start center" class="h48 tm16">
+    <md-button ng-click="onDisableClick()" aria-label="ENABLE">
+        <span ng-if="emptyCompositeViewDisabled">Enable</span>
+        <span ng-if="!emptyCompositeViewDisabled">Disable</span>
+    </md-button>
+</div>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+
+    <strong>HTML:</strong>
+
+            &lt;<strong>pip-composite-view pip-contents="compositeView"</strong>
+                        ng-disabled="isDisabled()"
+                        pip-rebind="true"&gt;
+            &lt;/<strong>pip-composite-view</strong>&gt;
+
+    <strong>JS:</strong>
+
+            <strong>$scope.compositeView</strong> = [
+                {
+                    type: <strong>'text'</strong>,
+                    text: chance.paragraph(),
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: []
+                },
+                {
+                    type: <strong>'documents'</strong>,
+                    text: '',
+                    docs: [
+                        {
+                            file_id: "12eb8327eaa60e89207b7489",
+                            file_name: "6d4261a3e51725.mp3"
+                        },
+                        {
+                            file_id: "54eb8327eaa60e89207b7489",
+                            file_name: "1d4261a3e51725.mp3"
+                        }
+                    ],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: []
+                },
+                {
+                    type: 'pictures',
+                    text: '',
+                    docs: [],
+                    pic_ids: [
+                        "56790b4960958daa664fd8c6",
+                        "56790b4c60958daa664fd8c7"
+                    ],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: []
+                },
+                {
+                    type: <strong>'checklist'</strong>,
+                    text: '',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: [
+                        {
+                            text: 'Efficiently simplify visionary content rather than extensive. Phosfluorescently engage. Efficiently simplify visionary content rather than extensive. Phosfluorescently engage.',
+                            checked: true
+                        },
+                        {
+                            text: 'Phosfluorescently engage clicks-and-mortar niche markets.',
+                            checked: true
+                        }
+                    ]
+                },
+                {
+                    type: <strong>'time'</strong>,
+                    text: '',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: '2015-08-31T21:00:00.000Z',
+                    checklist: []
+                },
+                {
+                    <strong>type: 'time'</strong>,
+                    text: '',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: '2015-07-31T21:00:00.000Z',
+                    end: '2015-08-31T21:00:00.000Z',
+                    checklist: []
+                },
+                {
+                    <strong>type: 'location'</strong>,
+                    text: '',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: {
+                        type: 'Point',
+                        coordinates: [32.393603, -110.982593]
+                    },
+                    loc_name: '780 W. Lost Creek Place, Tucson, AZ 85737',
+                    start: null,
+                    end: null,
+                    checklist: []
+                }
+            ];
+</pre>

@@ -5,8 +5,17 @@
 
     var thisModule = angular.module('appComposite.ContentSwitch', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            PRESS_BUTTON_FOR_SHOW_HIDE: 'Press button for show/hide content'
+        });
+        pipTranslateProvider.translations('ru', {
+            PRESS_BUTTON_FOR_SHOW_HIDE: 'Нажмите кнопки чтоб показать/скрыть контент'
+        });
+    });
+
     thisModule.controller('ContentSwitchController',
-        function($scope, pipSession) {
+        function ($scope, pipSession, pipAppBar) {
 
             pipAppBar.hideShadow();
 
@@ -34,7 +43,7 @@
             $scope.onShowAll = onShowAll;
             $scope.onHideAll = onHideAll;
 
-            return ;
+            return;
 
             function onShowAll() {
                 $scope.contentSwitchOption = {

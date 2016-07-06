@@ -5,6 +5,17 @@
 
     var thisModule = angular.module('appComposite.CompositeEmpty', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            DESCRIBE_THIS: 'Descibe this...',
+            CONTENT: 'Result content'
+        });
+        pipTranslateProvider.translations('ru', {
+            DESCRIBE_THIS: 'Опишите это...',
+            CONTENT: 'Содержимое результата'
+        });
+    });
+
     thisModule.controller('CompositeEmptyController',
         function($scope, pipAppBar) {
             
