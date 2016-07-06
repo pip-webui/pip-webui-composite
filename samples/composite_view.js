@@ -6,7 +6,10 @@
     var thisModule = angular.module('appComposite.CompositeView', []);
 
     thisModule.controller('CompositeViewController',
-        function($scope) {
+        function($scope, pipAppBar) {
+
+            pipAppBar.hideShadow();
+            
             $scope.emptyComposite = [];
 
             $scope.onDisableClick = function() {

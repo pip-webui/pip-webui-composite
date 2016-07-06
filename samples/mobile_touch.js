@@ -6,7 +6,8 @@
     var thisModule = angular.module('appComposite.MobileTouch', []);
 
     thisModule.controller('MobileTouchController',
-        function($scope) {
+        function($scope, pipAppBar) {
+            pipAppBar.hideShadow();
 
             onClear();
 

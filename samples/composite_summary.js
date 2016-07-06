@@ -6,8 +6,10 @@
     var thisModule = angular.module('appComposite.CompositeSummary', []);
 
     thisModule.controller('CompositeSummaryController',
-        function($scope) {
+        function($scope, pipAppBar) {
 
+            pipAppBar.hideShadow();
+            
             $scope.compositeSummarySecondary = [
                 {
                     type: 'checklist',

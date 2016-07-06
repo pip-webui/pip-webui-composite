@@ -1,33 +1,28 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appComposite.Checklist', []);
 
     thisModule.controller('ChecklistController',
-        function($scope, pipEnums, pipTestContent) {
+        function ($scope, pipEnums, pipTestContent, pipAppBar) {
 
             init();
 
-            $scope.onChange = function () {
-console.log('onChange', _.cloneDeep($scope.emptyChecklist));
-console.log('onChange1', $scope.emptyChecklist);
-            };
+            pipAppBar.hideShadow();
 
-            $scope.onDisableViewClick = function() {
+            $scope.onDisableViewClick = function () {
                 $scope.emptyChecklistViewDisabled = !$scope.emptyChecklistViewDisabled;
             };
 
-            $scope.onDisableClick = function() {
+            $scope.onDisableClick = function () {
                 $scope.emptyChecklistDisabled = !$scope.emptyChecklistDisabled;
             };
 
-            $scope.isDisabled = function() {
+            $scope.isDisabled = function () {
                 return $scope.emptyChecklistDisabled === true;
             };
 
-            $scope.isDisabledView = function() {
+            $scope.isDisabledView = function () {
                 return $scope.emptyChecklistViewDisabled === true;
             };
 
@@ -80,4 +75,4 @@ console.log('onChange1', $scope.emptyChecklist);
         }
     );
 
-})();
+})(window.angular);

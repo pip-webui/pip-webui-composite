@@ -6,8 +6,10 @@
     var thisModule = angular.module('appComposite.Composite', []);
 
     thisModule.controller('CompositeController',
-        function($scope) {
+        function($scope, pipAppBar) {
             $scope.emptyComposite = [];
+
+            pipAppBar.hideShadow();
 
             $scope.compositeView = [
                 {

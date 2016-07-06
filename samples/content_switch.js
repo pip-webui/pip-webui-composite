@@ -8,6 +8,8 @@
     thisModule.controller('ContentSwitchController',
         function($scope, pipSession) {
 
+            pipAppBar.hideShadow();
+
             $scope.item = {
                 pictureIds: [],
                 docs: [],
