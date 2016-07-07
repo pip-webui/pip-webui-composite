@@ -1,6 +1,5 @@
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appComposite.CompositeEmpty', []);
@@ -17,17 +16,17 @@
     });
 
     thisModule.controller('CompositeEmptyController',
-        function($scope, pipAppBar) {
-            
+        function ($scope, pipAppBar) {
+
             pipAppBar.hideShadow();
-            
+
             $scope.emptyComposite = [];
 
-            $scope.onDisableClick = function() {
+            $scope.onDisableClick = function () {
                 $scope.emptyChecklistDisabled = !$scope.emptyChecklistDisabled;
             };
 
-            $scope.isDisabled = function() {
+            $scope.isDisabled = function () {
                 return $scope.emptyChecklistDisabled === true;
             };
 
@@ -35,12 +34,10 @@
                 $scope.emptyComposite = [];
             };
 
-            $scope.onChange = function() {
-                console.log('onChange');
+            $scope.onChange = function () {
+                console.log('onChange'); // eslint-disable-line
             };
-
-
         }
     );
 
-})();
+})(window.angular);

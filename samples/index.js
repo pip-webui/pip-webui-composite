@@ -3,58 +3,6 @@
 (function () {
     'use strict';
 
-    var content = [
-        {
-            title: 'Checklist',
-            state: 'checklist',
-            url: '/checklist',
-            controller: 'ChecklistController',
-            templateUrl: 'checklist.html'
-        },
-        {
-            title: 'Composite Empty',
-            state: 'composite_empty',
-            url: '/composite_empty',
-            controller: 'CompositeEmptyController',
-            templateUrl: 'composite_empty.html'
-        },
-        {
-            title: 'Composite',
-            state: 'composite',
-            url: '/composite',
-            controller: 'CompositeController',
-            templateUrl: 'composite.html'
-        },
-        {
-            title: 'Composite View',
-            state: 'composite_view',
-            url: '/composite_view',
-            controller: 'CompositeViewController',
-            templateUrl: 'composite_view.html'
-        },
-        {
-            title: 'Composite Summary',
-            state: 'composite_summary',
-            url: '/composite_summary',
-            controller: 'CompositeSummaryController',
-            templateUrl: 'composite_summary.html'
-        },
-        {
-            title: 'ContentSwitch',
-            state: 'content_switch',
-            url: '/content_switch',
-            controller: 'ContentSwitchController',
-            templateUrl: 'content_switch.html'
-        },
-        {
-            title: 'MobileTouch',
-            state: 'mobile_touch',
-            url: '/mobile_touch',
-            controller: 'MobileTouchController',
-            templateUrl: 'mobile_touch.html'
-        }
-    ];
-
     var thisModule = angular.module('appComposite',
         [
             // 3rd Party Modules

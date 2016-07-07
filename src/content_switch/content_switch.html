@@ -9,7 +9,7 @@
            ng-show="showIconPicture"
            ng-disabled="transaction.busy()">
         <md-icon class="active-camera"
-                 xng-class="{ 'active-camera': showPictures }"
+                 ng-class="{ 'active-camera': showPictures }"
                  md-svg-icon="icons:camera"></md-icon>
 </md-button>
 <md-button ng-click="showDocuments = !showDocuments; onButtonClick('documents')"

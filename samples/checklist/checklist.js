@@ -78,7 +78,7 @@
                         size: 6,
                         optionTextType: 'sentence'
                     }), [{
-                        text: "http://www.rambler.ru",
+                        text: 'http://www.rambler.ru',
                         checked: true
                     }]
                 );

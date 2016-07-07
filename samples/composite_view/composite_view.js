@@ -1,6 +1,5 @@
-/* global angular */
 
-(function () {
+(function (angular, chance) {
     'use strict';
 
     var thisModule = angular.module('appComposite.CompositeView', []);
@@ -20,8 +19,8 @@
                 return $scope.emptyCompositeViewDisabled === true;
             };
 
-            $scope.showAlert = function (ev) {
-                console.log('click');
+            $scope.showAlert = function () {
+                console.log('click'); // eslint-disable-line
             };
 
             $scope.item = {
@@ -47,12 +46,12 @@
                     text: '',
                     docs: [
                         {
-                            file_id: "12eb8327eaa60e89207b7489",
-                            file_name: "6d4261a3e51725.mp3"
+                            file_id: '12eb8327eaa60e89207b7489',
+                            file_name: '6d4261a3e51725.mp3'
                         },
                         {
-                            file_id: "54eb8327eaa60e89207b7489",
-                            file_name: "1d4261a3e51725.mp3"
+                            file_id: '54eb8327eaa60e89207b7489',
+                            file_name: '1d4261a3e51725.mp3'
                         }
                     ],
                     pic_ids: [],
@@ -67,8 +66,8 @@
                     text: '',
                     docs: [],
                     pic_ids: [
-                        "56790b4960958daa664fd8c6",
-                        "56790b4c60958daa664fd8c7"
+                        '56790b4960958daa664fd8c6',
+                        '56790b4c60958daa664fd8c7'
                     ],
                     loc_pos: null,
                     loc_name: '',
@@ -87,7 +86,9 @@
                     end: null,
                     checklist: [
                         {
-                            text: 'Efficiently simplify visionary content rather than extensive. Phosfluorescently engage. Efficiently simplify visionary content rather than extensive. Phosfluorescently engage.',
+                            text: 'Efficiently simplify visionary content rather than extensive. ' +
+                            'Phosfluorescently engage. Efficiently simplify visionary content rather than extensive. ' +
+                            'Phosfluorescently engage.',
                             checked: true
                         },
                         {
@@ -136,5 +137,4 @@
 
         }
     );
-
-})();
+})(window.angular, window.chance);

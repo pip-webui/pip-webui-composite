@@ -1,15 +1,14 @@
-/* global angular */
 
-(function () {
+(function (angular, chance) {
     'use strict';
 
     var thisModule = angular.module('appComposite.CompositeSummary', []);
 
     thisModule.controller('CompositeSummaryController',
-        function($scope, pipAppBar) {
+        function ($scope, pipAppBar) {
 
             pipAppBar.hideShadow();
-            
+
             $scope.compositeSummarySecondary = [
                 {
                     type: 'checklist',
@@ -22,7 +21,8 @@
                     end: null,
                     checklist: [
                         {
-                            text: 'Efficiently simplify visionary content rather than extensive. Phosfluorescently engage.',
+                            text: 'Efficiently simplify visionary content rather than extensive. ' +
+                            'Phosfluorescently engage.',
                             checked: true
                         },
                         {
@@ -38,7 +38,9 @@
                             checked: true
                         },
                         {
-                            text: 'Conveniently redefine empowered catalysts for change vis-a-vis timely action items. Continually underwhelm interactive information whereas leading-edge networks.',
+                            text: 'Conveniently redefine empowered catalysts for change vis-a-vis ' +
+                            'timely action items. Continually underwhelm interactive information ' +
+                            'whereas leading-edge networks.',
                             checked: true
                         }
                     ]
@@ -95,12 +97,12 @@
                     text: '',
                     docs: [
                         {
-                            file_id: "12eb8327eaa60e89207b7489",
-                            file_name: "6d4261a3e51725.mp3"
+                            file_id: '12eb8327eaa60e89207b7489',
+                            file_name: '6d4261a3e51725.mp3'
                         },
                         {
-                            file_id: "54eb8327eaa60e89207b7489",
-                            file_name: "1d4261a3e51725.mp3"
+                            file_id: '54eb8327eaa60e89207b7489',
+                            file_name: '1d4261a3e51725.mp3'
                         }
                     ],
                     pic_ids: [],
@@ -135,7 +137,8 @@
                     end: null,
                     checklist: [
                         {
-                            text: 'Efficiently simplify visionary content rather than extensive. Phosfluorescently engage.',
+                            text: 'Efficiently simplify visionary content rather than extensive. ' +
+                            'Phosfluorescently engage.',
                             checked: true
                         },
                         {
@@ -151,7 +154,9 @@
                             checked: true
                         },
                         {
-                            text: 'Conveniently redefine empowered catalysts for change vis-a-vis timely action items. Continually underwhelm interactive information whereas leading-edge networks.',
+                            text: 'Conveniently redefine empowered catalysts for change vis-a-vis timely ' +
+                            'action items. Continually underwhelm interactive information whereas ' +
+                            'leading-edge networks.',
                             checked: true
                         }
                     ]
@@ -183,8 +188,8 @@
                     text: '',
                     docs: [],
                     pic_ids: [
-                        "56790b4960958daa664fd8c6",
-                        "56790b4c60958daa664fd8c7"
+                        '56790b4960958daa664fd8c6',
+                        '56790b4c60958daa664fd8c7'
                     ],
                     loc_pos: null,
                     loc_name: '',
@@ -197,11 +202,11 @@
                     text: '',
                     docs: [],
                     pic_ids: [
-                        "56790b4960958daa664fd8c2",
-                        "56790b4960958daa664fd8c1",
-                        "56790b4960958daa664fd8c4",
-                        "56790b4960958daa664fd8c3",
-                        "56790b4960958daa664fd8c5"
+                        '56790b4960958daa664fd8c2',
+                        '56790b4960958daa664fd8c1',
+                        '56790b4960958daa664fd8c4',
+                        '56790b4960958daa664fd8c3',
+                        '56790b4960958daa664fd8c5'
                     ],
                     loc_pos: null,
                     loc_name: '',
@@ -247,17 +252,17 @@
                     text: '',
                     docs: [],
                     pic_ids: [
-                        "56790b4c60958daa664fd8c8",
-                        "56790b4e60958daa664fd8c9",
-                        "56790b4f60958daa664fd8ca",
-                        "56790b4f60958daa664fd8cb",
-                        "56790b4f60958daa664fd8cc",
-                        "56790b5060958daa664fd8cd",
-                        "56790b5160958daa664fd8ce",
-                        "56790b5160958daa664fd8cf",
-                        "56790b5260958daa664fd8d0",
-                        "567911f060958daa664fd8ff",
-                        "567911f060958daa664fd8fe"
+                        '56790b4c60958daa664fd8c8',
+                        '56790b4e60958daa664fd8c9',
+                        '56790b4f60958daa664fd8ca',
+                        '56790b4f60958daa664fd8cb',
+                        '56790b4f60958daa664fd8cc',
+                        '56790b5060958daa664fd8cd',
+                        '56790b5160958daa664fd8ce',
+                        '56790b5160958daa664fd8cf',
+                        '56790b5260958daa664fd8d0',
+                        '567911f060958daa664fd8ff',
+                        '567911f060958daa664fd8fe'
                     ],
                     loc_pos: null,
                     loc_name: '',
@@ -284,12 +289,12 @@
                     text: '',
                     docs: [
                         {
-                            file_id: "12eb8327eaa60e89207b7489",
-                            file_name: "6d4261a3e51725.mp3"
+                            file_id: '12eb8327eaa60e89207b7489',
+                            file_name: '6d4261a3e51725.mp3'
                         },
                         {
-                            file_id: "54eb8327eaa60e89207b7489",
-                            file_name: "1d4261a3e51725.mp3"
+                            file_id: '54eb8327eaa60e89207b7489',
+                            file_name: '1d4261a3e51725.mp3'
                         }
                     ],
                     pic_ids: [],
@@ -304,4 +309,4 @@
         }
     );
 
-})();
+})(window.angular, window.chance);

@@ -1,5 +1,4 @@
-
-(function (angular) {
+(function (angular, chance) {
     'use strict';
 
     var thisModule = angular.module('appComposite.Composite', []);
@@ -126,4 +125,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window.chance);
