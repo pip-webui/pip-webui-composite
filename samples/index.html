@@ -70,6 +70,7 @@
                          pip-select="onNavigationSelect($event.id)">
                     <md-list-item class="pip-simple-list-item pip-selectable"
                                   ng-repeat="page in pages track by page.state"
+                                  ng-class="{'selected': page.state == $state.name}"
                                   md-ink-ripple
                                   pip-id="{{:: page.state }}">
                         <p>{{:: page.title }}</p>
