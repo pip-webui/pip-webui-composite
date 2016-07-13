@@ -16,23 +16,23 @@
 
             var content = [
                 { title: 'Checklist', state: 'checklist', url: '/checklist',
-                    controller: 'ChecklistController', templateUrl: 'checklist/checklist.html' },
+                    controller: 'ChecklistController', templateUrl: 'checklist/checklist.html', auth: false },
                 { title: 'Composite Empty', state: 'composite_empty', url: '/composite_empty',
                     controller: 'CompositeEmptyController',
-                    templateUrl: 'composite_empty/composite_empty.html' },
+                    templateUrl: 'composite_empty/composite_empty.html', auth: false },
                 { title: 'Composite', state: 'composite', url: '/composite',
-                    controller: 'CompositeController', templateUrl: 'composite/composite.html' },
+                    controller: 'CompositeController', templateUrl: 'composite/composite.html', auth: false },
                 { title: 'Composite View', state: 'composite_view', url: '/composite_view',
                     controller: 'CompositeViewController',
-                    templateUrl: 'composite_view_sample/composite_view.html' },
+                    templateUrl: 'composite_view_sample/composite_view.html', auth: false },
                 { title: 'Composite Summary', state: 'composite_summary', url: '/composite_summary',
                     controller: 'CompositeSummaryController',
-                    templateUrl: 'composite_summary_sample/composite_summary.html' },
+                    templateUrl: 'composite_summary_sample/composite_summary.html', auth: false },
                 { title: 'ContentSwitch', state: 'content_switch', url: '/content_switch',
                     controller: 'ContentSwitchController',
-                    templateUrl: 'content_switch_sample/content_switch.html' },
+                    templateUrl: 'content_switch_sample/content_switch.html', auth: false },
                 { title: 'MobileTouch', state: 'mobile_touch', url: '/mobile_touch',
-                    controller: 'MobileTouchController', templateUrl: 'mobile_touch/mobile_touch.html' }
+                    controller: 'MobileTouchController', templateUrl: 'mobile_touch/mobile_touch.html', auth: false }
                 ],
                 contentItem, i;
 
