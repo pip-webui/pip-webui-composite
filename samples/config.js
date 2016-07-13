@@ -63,13 +63,7 @@
             pipAuthStateProvider.unauthorizedState('signin');
             pipAuthStateProvider.authorizedState('checklist');
 
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path === '') {
-                    return '/signin';
-                }
-
-                return '/checklist';
-            });
+            $urlRouterProvider.otherwise('/checklist');
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
@@ -78,10 +72,10 @@
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'COMPOSITE_CONTROLS', url: '/checklist'}]
-                },
+                }/*,
                 {
                     links: [{title: 'SIGNOUT', url: '/signout'}]
-                }
+                }*/
             ]);
         }
     );
