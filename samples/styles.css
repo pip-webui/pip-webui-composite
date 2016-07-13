@@ -1,3 +1,7 @@
 .pip-content-container {
     overflow-y: auto;
 }
+
+.pip-menu {
+    overflow-x: hidden !important;
+}

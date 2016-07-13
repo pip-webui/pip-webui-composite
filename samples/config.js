@@ -16,23 +16,23 @@
 
             var content = [
                 { title: 'Checklist', state: 'checklist', url: '/checklist',
-                    controller: 'ChecklistController', templateUrl: '../samples/checklist/checklist.html' },
+                    controller: 'ChecklistController', templateUrl: 'checklist/checklist.html' },
                 { title: 'Composite Empty', state: 'composite_empty', url: '/composite_empty',
                     controller: 'CompositeEmptyController',
-                    templateUrl: '../samples/composite_empty/composite_empty.html' },
+                    templateUrl: 'composite_empty/composite_empty.html' },
                 { title: 'Composite', state: 'composite', url: '/composite',
-                    controller: 'CompositeController', templateUrl: '../samples/composite/composite.html' },
+                    controller: 'CompositeController', templateUrl: 'composite/composite.html' },
                 { title: 'Composite View', state: 'composite_view', url: '/composite_view',
                     controller: 'CompositeViewController',
-                    templateUrl: '../samples/composite_view/composite_view.html' },
+                    templateUrl: 'composite_view_sample/composite_view.html' },
                 { title: 'Composite Summary', state: 'composite_summary', url: '/composite_summary',
                     controller: 'CompositeSummaryController',
-                    templateUrl: '../samples/composite_summary/composite_summary.html' },
+                    templateUrl: 'composite_summary_sample/composite_summary.html' },
                 { title: 'ContentSwitch', state: 'content_switch', url: '/content_switch',
                     controller: 'ContentSwitchController',
-                    templateUrl: '../samples/content_switch/content_switch.html' },
+                    templateUrl: 'content_switch_sample/content_switch.html' },
                 { title: 'MobileTouch', state: 'mobile_touch', url: '/mobile_touch',
-                    controller: 'MobileTouchController', templateUrl: '../samples/mobile_touch/mobile_touch.html' }
+                    controller: 'MobileTouchController', templateUrl: 'mobile_touch/mobile_touch.html' }
                 ],
                 contentItem, i;
 
