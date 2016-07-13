@@ -16,10 +16,13 @@
 
     thisModule.controller('ChecklistController',
         function ($scope, pipEnums, pipTestContent, pipAppBar) {
-
+            
             init();
 
             pipAppBar.hideShadow();
+            pipAppBar.showTitleText('COMPOSITE_CONTROLS');
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
 
             $scope.onDisableViewClick = function () {
                 $scope.emptyChecklistViewDisabled = !$scope.emptyChecklistViewDisabled;

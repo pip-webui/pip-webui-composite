@@ -8,6 +8,9 @@
         function ($scope, pipAppBar) {
 
             pipAppBar.hideShadow();
+            pipAppBar.showTitleText('COMPOSITE_CONTROLS');
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
 
             $scope.compositeSummarySecondary = [
                 {

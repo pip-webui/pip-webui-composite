@@ -1,6 +1,5 @@
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appComposite',
@@ -10,6 +9,7 @@
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
             // Modules from WebUI Framework
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipComposite', 'pipEntry', 'pipNav',
+            'pipLayout',
             // testing data modules (have some data for example)
             'pipWebuiTests', 'pipSampleConfig',
             // Sample Application Modules
@@ -61,10 +61,6 @@
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
             });
 
-            pipAppBar.showTitleText('COMPOSITE_CONTROLS');
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-
             $scope.onNavigationSelect = function (stateName) {
                 if ($state.current.name !== stateName) {
                     $state.go(stateName);
@@ -84,4 +80,4 @@
         }
     );
 
-})();
+})(window.angular);

@@ -18,7 +18,11 @@
 
     thisModule.controller('MobileTouchController',
         function ($scope, pipAppBar) {
+
             pipAppBar.hideShadow();
+            pipAppBar.showTitleText('COMPOSITE_CONTROLS');
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
 
             onClear();
 
