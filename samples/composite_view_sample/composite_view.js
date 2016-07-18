@@ -35,7 +35,10 @@
             $scope.compositeView = [
                 {
                     type: 'text',
-                    text: chance.paragraph(),
+                    text: 'Architecture is both the process and the product of planning, designing, ' +
+                    'and constructing buildings and other physical structures. Architectural works, ' +
+                    'in the material form of buildings, are often perceived as cultural symbols and as works of art. ' +
+                    'Historical civilizations are often identified with their surviving architectural achievements.',
                     docs: [],
                     pic_ids: [],
                     loc_pos: null,
@@ -43,6 +46,57 @@
                     start: null,
                     end: null,
                     checklist: []
+                },
+                {
+                    type: 'text',
+                    text: '### "Architecture" can mean:',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: []
+                },
+                {
+                    type: 'checklist',
+                    text: '',
+                    docs: [],
+                    pic_ids: [],
+                    loc_pos: null,
+                    loc_name: '',
+                    start: null,
+                    end: null,
+                    checklist: [
+                        {
+                            text: 'A general term to describe buildings and other physical structures',
+                            checked: true
+                        },
+                        {
+                            text: 'The art and science of designing buildings and (some) nonbuilding structures',
+                            checked: true
+                        },
+                        {
+                            text: 'The style of design and method of construction of buildings ' +
+                            'and other physical structures',
+                            checked: true
+                        },
+                        {
+                            text: 'Knowledge of art, science, technology and humanity',
+                            checked: true
+                        },
+                        {
+                            text: 'The practice of the architect, where architecture means offering ' +
+                            'or rendering professional services in connection with the design and construction ' +
+                            'of buildings, or built environments',
+                            checked: true
+                        },
+                        {
+                            text: 'The design activity of the architect, from the macro-level (urban design, ' +
+                            'landscape architecture) to the micro-level (construction details and furniture).',
+                            checked: true
+                        }
+                    ]
                 },
                 {
                     type: 'documents',
@@ -77,28 +131,6 @@
                     start: null,
                     end: null,
                     checklist: []
-                },
-                {
-                    type: 'checklist',
-                    text: '',
-                    docs: [],
-                    pic_ids: [],
-                    loc_pos: null,
-                    loc_name: '',
-                    start: null,
-                    end: null,
-                    checklist: [
-                        {
-                            text: 'Efficiently simplify visionary content rather than extensive. ' +
-                            'Phosfluorescently engage. Efficiently simplify visionary content rather than extensive. ' +
-                            'Phosfluorescently engage.',
-                            checked: true
-                        },
-                        {
-                            text: 'Phosfluorescently engage clicks-and-mortar niche markets.',
-                            checked: true
-                        }
-                    ]
                 },
                 {
                     type: 'time',

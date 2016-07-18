@@ -33,11 +33,11 @@
                             checked: true
                         },
                         {
-                            text: 'Следующий будет пустым',
+                            text: 'Proactively communicate collaborative strategic theme areas for B2B ROI. Assertively.',
                             checked: false
                         },
                         {
-                            text: '',
+                            text: 'Appropriately morph revolutionary leadership.',
                             checked: true
                         },
                         {
