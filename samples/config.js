@@ -90,7 +90,7 @@
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'COMPOSITE_CONTROLS', url: '/checklist'}]
-                },
+                }/*, Links only for publishing samples
                 {
                     links: links
                 }/*,
