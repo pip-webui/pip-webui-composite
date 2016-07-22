@@ -25,7 +25,7 @@
 
     <!-- for documents -->
     <div ng-if="item.type == 'documents' && item.docs.length > 0"
-         class="pip-composite-documents" layout="row" layout-align="start start" flex>
+         class="pip-composite-documents layout-row layout-align-start-start flex">
         <pip-document-list pip-documents="item.docs"
                            pip-document-icon="true"
                            pip-rebind="true"
@@ -44,7 +44,7 @@
     </div>
 
     <!--for location -->
-    <div class="pip-composite-location" layout="row" layout-align="start start" flex
+    <div class="pip-composite-location layout-row layout-align-start-start flex"
          ng-if="item.type == 'location' && (item.loc_pos || item.loc_name)">
 
         <pip-location pip-location-name="item.loc_name"
@@ -57,8 +57,8 @@
     </div>
 
     <!-- for time -->
-    <div class="pip-composite-time lp24-flex rp24-flex"
-         ng-if="item.type == 'time'" layout="row" layout-align="start center"  flex>
+    <div class="pip-composite-time lp24-flex rp24-flex layout-row layout-align-start-center  flex"
+         ng-if="item.type == 'time'">
 
         <md-icon md-svg-icon="icons:time" class="lm0"></md-icon>
         <pip-time-view

@@ -28,9 +28,8 @@
 
             <!--<div ng-class="{'putt_box': selected.drag}"></div>-->
             <div class="putt_box"></div>
-            <div class="pip-section-header"
-                 ng-if="!obj.empty"
-                 layout="row" layout-align="start center">
+            <div class="pip-section-header layout-row layout-align-start-center"
+                 ng-if="!obj.empty">
                 <div class="w38"></div>
                 <md-button class="md-icon-button md-icon-button-little icon-rearrange-btn no-ripple-container rm8 cursor-move"
                            ng-if="!ngDisabled() && compositeContent.length > 1"
@@ -92,9 +91,8 @@
                 </pip-document-list-edit>
             </div>
 
-            <div class="pip-section-content"
-                 ng-if="obj.type == 'checklist'" pip-cancel-drag="true"
-                 layout="row" layout-align="start center">
+            <div class="pip-section-content layout-row layout-align-start-center"
+                 ng-if="obj.type == 'checklist'" pip-cancel-drag="true">
                 <pip-checklist-edit pip-options="obj.checklist"
                                     pip-draggable="isActiveChecklist(obj)"
                                     pip-changed="onContentChange(obj)"
