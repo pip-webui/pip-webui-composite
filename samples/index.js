@@ -47,11 +47,11 @@
                     controller: 'CompositeSummaryController', templateUrl: 'composite_summary.html'
                 },
                 {
-                    title: 'ContentSwitch', state: 'content_switch', url: '/content_switch',
+                    title: 'Content Switch', state: 'content_switch', url: '/content_switch',
                     controller: 'ContentSwitchController', templateUrl: 'content_switch.html'
                 },
                 {
-                    title: 'MobileTouch', state: 'mobile_touch', url: '/mobile_touch',
+                    title: 'Mobile Touch', state: 'mobile_touch', url: '/mobile_touch',
                     controller: 'MobileTouchController', templateUrl: 'mobile_touch.html'
                 }
             ];

@@ -15,8 +15,14 @@
     });
 
     thisModule.controller('ChecklistController',
-        function ($scope, pipEnums, pipTestContent, pipAppBar) {
-            
+        function ($scope, pipEnums, pipTestContent, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             init();
 
             pipAppBar.hideShadow();
