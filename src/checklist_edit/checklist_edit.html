@@ -19,10 +19,9 @@
          pip-drop-success="onDropComplete($index, $data, $event, selected.id)">
 
         <div ng-class="{'put_place': selected.drag}"></div>
-        <div class="pip-checklist-item-body"
+        <div class="pip-checklist-item-body layout-row layout-align-start-start"
              pip-cancel-drag="true"
-             ng-class="{ 'select-active-item': isSelectedItem($index) }"
-                layout="row" layout-align="start start">
+             ng-class="{ 'select-active-item': isSelectedItem($index) }">
 
             <div class="pip-checklist-button"  pip-cancel-drag="true">
                 <md-button pip-drag-handle

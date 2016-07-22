@@ -1,31 +1,3 @@
-/**
- * @file Registration of composite WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipComposite', [        
-        'pipContentSwitch',
-        'pipChecklistEdit',
-        'pipChecklistView',
-        'pipCompositeEdit',
-        'pipCompositeView',
-        'pipCompositeSummary',
-        'pipCompositeToolbar',
-        'pipCompositeFocused',
-
-        'pipMobileMouseup',
-        'pipMobileMousedown'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipComposite.Templates');
@@ -55,10 +27,9 @@ module.run(['$templateCache', function($templateCache) {
     '         pip-drop-success="onDropComplete($index, $data, $event, selected.id)">\n' +
     '\n' +
     '        <div ng-class="{\'put_place\': selected.drag}"></div>\n' +
-    '        <div class="pip-checklist-item-body"\n' +
+    '        <div class="pip-checklist-item-body layout-row layout-align-start-start"\n' +
     '             pip-cancel-drag="true"\n' +
-    '             ng-class="{ \'select-active-item\': isSelectedItem($index) }"\n' +
-    '                layout="row" layout-align="start start">\n' +
+    '             ng-class="{ \'select-active-item\': isSelectedItem($index) }">\n' +
     '\n' +
     '            <div class="pip-checklist-button"  pip-cancel-drag="true">\n' +
     '                <md-button pip-drag-handle\n' +
@@ -142,6 +113,34 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('checklist_view/checklist_view.html',
+    '<div ng-repeat="item in checklistContent track by $index">\n' +
+    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
+    '        <div class="pip-checklist-icon">\n' +
+    '            <md-checkbox  ng-model="item.checked"\n' +
+    '                          ng-click="onClick($event, item)"\n' +
+    '                          aria-label="COMPLETE"\n' +
+    '                          ng-disabled="ngDisabled()">\n' +
+    '            </md-checkbox>\n' +
+    '        </div>\n' +
+    '        <div class="pip-checklist-text"  flex>\n' +
+    '            <pip-markdown pip-text="item.text"\n' +
+    '                          pip-rebind="true"\n' +
+    '                          ng-disabled="true">\n' +
+    '            </pip-markdown>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_edit/composite_edit.html',
     '<!--\n' +
     '@file Composite edit control content\n' +
@@ -173,9 +172,8 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '            <!--<div ng-class="{\'putt_box\': selected.drag}"></div>-->\n' +
     '            <div class="putt_box"></div>\n' +
-    '            <div class="pip-section-header"\n' +
-    '                 ng-if="!obj.empty"\n' +
-    '                 layout="row" layout-align="start center">\n' +
+    '            <div class="pip-section-header layout-row layout-align-start-center"\n' +
+    '                 ng-if="!obj.empty">\n' +
     '                <div class="w38"></div>\n' +
     '                <md-button class="md-icon-button md-icon-button-little icon-rearrange-btn no-ripple-container rm8 cursor-move"\n' +
     '                           ng-if="!ngDisabled() && compositeContent.length > 1"\n' +
@@ -237,9 +235,8 @@ module.run(['$templateCache', function($templateCache) {
     '                </pip-document-list-edit>\n' +
     '            </div>\n' +
     '\n' +
-    '            <div class="pip-section-content"\n' +
-    '                 ng-if="obj.type == \'checklist\'" pip-cancel-drag="true"\n' +
-    '                 layout="row" layout-align="start center">\n' +
+    '            <div class="pip-section-content layout-row layout-align-start-center"\n' +
+    '                 ng-if="obj.type == \'checklist\'" pip-cancel-drag="true">\n' +
     '                <pip-checklist-edit pip-options="obj.checklist"\n' +
     '                                    pip-draggable="isActiveChecklist(obj)"\n' +
     '                                    pip-changed="onContentChange(obj)"\n' +
@@ -299,34 +296,6 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('checklist_view/checklist_view.html',
-    '<div ng-repeat="item in checklistContent track by $index">\n' +
-    '    <div class="pip-checklist-item" layout="row" layout-align="start start">\n' +
-    '        <div class="pip-checklist-icon">\n' +
-    '            <md-checkbox  ng-model="item.checked"\n' +
-    '                          ng-click="onClick($event, item)"\n' +
-    '                          aria-label="COMPLETE"\n' +
-    '                          ng-disabled="ngDisabled()">\n' +
-    '            </md-checkbox>\n' +
-    '        </div>\n' +
-    '        <div class="pip-checklist-text"  flex>\n' +
-    '            <pip-markdown pip-text="item.text"\n' +
-    '                          pip-rebind="true"\n' +
-    '                          ng-disabled="true">\n' +
-    '            </pip-markdown>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_summary/composite_summary.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -356,7 +325,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '    <!-- for documents -->\n' +
     '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
-    '         class="pip-composite-documents" layout="row" flex>\n' +
+    '         class="pip-composite-documents layout-row flex">\n' +
     '        <pip-document-list flex\n' +
     '                           pip-documents="item.docs"\n' +
     '                           pip-rebind="true"\n' +
@@ -378,7 +347,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '\n' +
     '    <!--for location -->\n' +
-    '    <div class="pip-composite-location" layout="row" layout-align="start center" flex\n' +
+    '    <div class="pip-composite-location layout-row layout-align-start-center flex"\n' +
     '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
     '\n' +
     '        <pip-location pip-location-name="item.loc_name"\n' +
@@ -391,9 +360,8 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '\n' +
     '    <!-- for time -->\n' +
-    '    <div class="pip-composite-time"\n' +
-    '         ng-if="item.type == \'time\' && (item.start || item.end)"\n' +
-    '         layout="row" layout-align="start center" flex>\n' +
+    '    <div class="pip-composite-time layout-row layout-align-start-center flex"\n' +
+    '         ng-if="item.type == \'time\' && (item.start || item.end)">\n' +
     '\n' +
     '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
     '        <pip-time-view\n' +
@@ -415,96 +383,13 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_view/composite_view.html',
-    '<div ng-repeat="item in compositeContent track by $index">\n' +
-    '\n' +
-    '    <!-- for text -->\n' +
-    '    <div class="pip-composite-text lp24-flex rp24-flex" ng-if="item.type == \'text\' && item.text" ng-class="{\'bm16\': $last}">\n' +
-    '        <pip-markdown pip-text="item.text"\n' +
-    '                      pip-rebind="true"\n' +
-    '                      ng-disabled="true">\n' +
-    '        </pip-markdown>\n' +
-    '    </div>\n' +
-    '    <!-- for pictures -->\n' +
-    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
-    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
-    '         class="pip-composite-pictures lp24-flex rp24-flex">\n' +
-    '        <pip-collage ng-if="rebind"\n' +
-    '                pip-picture-ids="item.pic_ids"\n' +
-    '                pip-unique-code="item.id"\n' +
-    '                pip-multiple="true"\n' +
-    '                pip-open="true"\n' +
-    '                pip-rebind="true"\n' +
-    '                ng-disabled="ngDisabled()">\n' +
-    '        </pip-collage>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for documents -->\n' +
-    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
-    '         class="pip-composite-documents" layout="row" layout-align="start start" flex>\n' +
-    '        <pip-document-list pip-documents="item.docs"\n' +
-    '                           pip-document-icon="true"\n' +
-    '                           pip-rebind="true"\n' +
-    '                           ng-disabled="ngDisabled()">\n' +
-    '        </pip-document-list>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for checklist -->\n' +
-    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
-    '         class="pip-composite-checklist lp24-flex rp24-flex">\n' +
-    '        <pip-checklist-view pip-options="item.checklist"\n' +
-    '                            pip-changed="onContentChange()"\n' +
-    '                            pip-rebind="true"\n' +
-    '                            ng-disabled="isDisabled()">\n' +
-    '        </pip-checklist-view>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for location -->\n' +
-    '    <div class="pip-composite-location" layout="row" layout-align="start start" flex\n' +
-    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
-    '\n' +
-    '        <pip-location pip-location-name="item.loc_name"\n' +
-    '                      pip-location-pos="item.loc_pos"\n' +
-    '                      pip-show-location-icon="true"\n' +
-    '                      pip-collapse="false"\n' +
-    '                      ng-disabled="ngDisabled()"\n' +
-    '                      pip-rebind="true" flex>\n' +
-    '        </pip-location>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for time -->\n' +
-    '    <div class="pip-composite-time lp24-flex rp24-flex"\n' +
-    '         ng-if="item.type == \'time\'" layout="row" layout-align="start center"  flex>\n' +
-    '\n' +
-    '        <md-icon md-svg-icon="icons:time" class="lm0"></md-icon>\n' +
-    '        <pip-time-view\n' +
-    '                pip-start-date="item.start"\n' +
-    '                pip-end-date="item.end"\n' +
-    '                pip-rebind="true"\n' +
-    '                ng-disabled="ngDisabled()">\n' +
-    '        </pip-time-view>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_toolbar/composite_toolbar.html',
     '<!--\n' +
     '@file Composite toolbar control content\n' +
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<div layout="row" layout-align="start start" flex>\n' +
+    '<div class="layout-row layout-align-start-start flex">\n' +
     '    <md-button class="pip-composite-button"\n' +
     '               ng-if="!emptyState"\n' +
     '               ng-class="{ \'remove-item\': !emptyState ,\n' +
@@ -567,6 +452,89 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_view/composite_view.html',
+    '<div ng-repeat="item in compositeContent track by $index">\n' +
+    '\n' +
+    '    <!-- for text -->\n' +
+    '    <div class="pip-composite-text lp24-flex rp24-flex" ng-if="item.type == \'text\' && item.text" ng-class="{\'bm16\': $last}">\n' +
+    '        <pip-markdown pip-text="item.text"\n' +
+    '                      pip-rebind="true"\n' +
+    '                      ng-disabled="true">\n' +
+    '        </pip-markdown>\n' +
+    '    </div>\n' +
+    '    <!-- for pictures -->\n' +
+    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
+    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
+    '         class="pip-composite-pictures lp24-flex rp24-flex">\n' +
+    '        <pip-collage ng-if="rebind"\n' +
+    '                pip-picture-ids="item.pic_ids"\n' +
+    '                pip-unique-code="item.id"\n' +
+    '                pip-multiple="true"\n' +
+    '                pip-open="true"\n' +
+    '                pip-rebind="true"\n' +
+    '                ng-disabled="ngDisabled()">\n' +
+    '        </pip-collage>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for documents -->\n' +
+    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
+    '         class="pip-composite-documents layout-row layout-align-start-start flex">\n' +
+    '        <pip-document-list pip-documents="item.docs"\n' +
+    '                           pip-document-icon="true"\n' +
+    '                           pip-rebind="true"\n' +
+    '                           ng-disabled="ngDisabled()">\n' +
+    '        </pip-document-list>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for checklist -->\n' +
+    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
+    '         class="pip-composite-checklist lp24-flex rp24-flex">\n' +
+    '        <pip-checklist-view pip-options="item.checklist"\n' +
+    '                            pip-changed="onContentChange()"\n' +
+    '                            pip-rebind="true"\n' +
+    '                            ng-disabled="isDisabled()">\n' +
+    '        </pip-checklist-view>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for location -->\n' +
+    '    <div class="pip-composite-location layout-row layout-align-start-start flex"\n' +
+    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
+    '\n' +
+    '        <pip-location pip-location-name="item.loc_name"\n' +
+    '                      pip-location-pos="item.loc_pos"\n' +
+    '                      pip-show-location-icon="true"\n' +
+    '                      pip-collapse="false"\n' +
+    '                      ng-disabled="ngDisabled()"\n' +
+    '                      pip-rebind="true" flex>\n' +
+    '        </pip-location>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for time -->\n' +
+    '    <div class="pip-composite-time lp24-flex rp24-flex layout-row layout-align-start-center  flex"\n' +
+    '         ng-if="item.type == \'time\'">\n' +
+    '\n' +
+    '        <md-icon md-svg-icon="icons:time" class="lm0"></md-icon>\n' +
+    '        <pip-time-view\n' +
+    '                pip-start-date="item.start"\n' +
+    '                pip-end-date="item.end"\n' +
+    '                pip-rebind="true"\n' +
+    '                ng-disabled="ngDisabled()">\n' +
+    '        </pip-time-view>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('content_switch/content_switch.html',
     '<!--\n' +
     '@file Content switch control content\n' +
@@ -579,7 +547,7 @@ module.run(['$templateCache', function($templateCache) {
     '           ng-show="showIconPicture"\n' +
     '           ng-disabled="transaction.busy()">\n' +
     '        <md-icon class="active-camera"\n' +
-    '                 xng-class="{ \'active-camera\': showPictures }"\n' +
+    '                 ng-class="{ \'active-camera\': showPictures }"\n' +
     '                 md-svg-icon="icons:camera"></md-icon>\n' +
     '</md-button>\n' +
     '<md-button ng-click="showDocuments = !showDocuments; onButtonClick(\'documents\')"\n' +
@@ -602,9 +570,37 @@ module.run(['$templateCache', function($templateCache) {
     '           ng-show="showIconLocation"\n' +
     '           ng-disabled="transaction.busy()">\n' +
     '    <md-icon ng-class="{ \'active-location\': showLocation }" md-svg-icon="icons:location"></md-icon>\n' +
-    '</md-button>\'');
+    '</md-button>');
 }]);
 })();
+
+/**
+ * @file Registration of composite WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipComposite', [        
+        'pipContentSwitch',
+        'pipChecklistEdit',
+        'pipChecklistView',
+        'pipCompositeEdit',
+        'pipCompositeView',
+        'pipCompositeSummary',
+        'pipCompositeToolbar',
+        'pipCompositeFocused',
+
+        'pipMobileMouseup',
+        'pipMobileMousedown'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Checklist edit control
