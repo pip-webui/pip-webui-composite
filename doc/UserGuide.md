@@ -23,8 +23,9 @@ Almost done. Right now Composite module must work.
 Note: [**build.conf.js**](https://github.com/pip-webui/pip-webui/tree/master/doc/configjs-readme.md) and [**index.js**](https://github.com/pip-webui/pip-webui/tree/master/doc/indexjs-readme.md) must also created.
 
 Folder structure will be:
+
 <a href="images/folder-structure.png">
-    <img src="doc/images/img-composite-summary.png"/>
+    <img src="images/folder-structure.png"/>
 </a>
 
 ## Browser support:
