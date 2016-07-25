@@ -27,7 +27,7 @@
     <!-- for documents -->
     <div ng-if="item.type == 'documents' && item.docs.length > 0"
          class="pip-composite-documents layout-row flex">
-        <pip-document-list flex
+        <pip-document-list class="flex"
                            pip-documents="item.docs"
                            pip-rebind="true"
                            pip-document-icon="true"
@@ -51,12 +51,13 @@
     <div class="pip-composite-location layout-row layout-align-start-center flex"
          ng-if="item.type == 'location' && (item.loc_pos || item.loc_name)">
 
-        <pip-location pip-location-name="item.loc_name"
+        <pip-location class="flex"
+                      pip-location-name="item.loc_name"
                       pip-location-pos="item.loc_pos"
                       pip-collapse="true"
                       pip-show-location-icon="true"
                       ng-disabled="disableControl"
-                      pip-rebind="true" flex>
+                      pip-rebind="true">
         </pip-location>
     </div>
 

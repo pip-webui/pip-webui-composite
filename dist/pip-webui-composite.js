@@ -1,3 +1,31 @@
+/**
+ * @file Registration of composite WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipComposite', [        
+        'pipContentSwitch',
+        'pipChecklistEdit',
+        'pipChecklistView',
+        'pipCompositeEdit',
+        'pipCompositeView',
+        'pipCompositeSummary',
+        'pipCompositeToolbar',
+        'pipCompositeFocused',
+
+        'pipMobileMouseup',
+        'pipMobileMousedown'
+    ]);
+    
+})();
+
+
+
 (function(module) {
 try {
   module = angular.module('pipComposite.Templates');
@@ -65,8 +93,8 @@ module.run(['$templateCache', function($templateCache) {
     '                    </md-checkbox>\n' +
     '                </div>\n' +
     '            </div>\n' +
-    '            <div class="pip-checklist-text" flex  pip-cancel-drag="true">\n' +
-    '                <md-input-container md-no-float flex >\n' +
+    '            <div class="pip-checklist-text flex " pip-cancel-drag="true">\n' +
+    '                <md-input-container md-no-float class="flex" >\n' +
     '                    <textarea ng-model="item.text"\n' +
     '                              name="{{\'text\' + $index}}"\n' +
     '                              aria-label="TEXT"\n' +
@@ -123,7 +151,7 @@ module.run(['$templateCache', function($templateCache) {
     '                          ng-disabled="ngDisabled()">\n' +
     '            </md-checkbox>\n' +
     '        </div>\n' +
-    '        <div class="pip-checklist-text"  flex>\n' +
+    '        <div class="pip-checklist-text flex">\n' +
     '            <pip-markdown pip-text="item.text"\n' +
     '                          pip-rebind="true"\n' +
     '                          ng-disabled="true">\n' +
@@ -326,7 +354,7 @@ module.run(['$templateCache', function($templateCache) {
     '    <!-- for documents -->\n' +
     '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
     '         class="pip-composite-documents layout-row flex">\n' +
-    '        <pip-document-list flex\n' +
+    '        <pip-document-list class="flex"\n' +
     '                           pip-documents="item.docs"\n' +
     '                           pip-rebind="true"\n' +
     '                           pip-document-icon="true"\n' +
@@ -350,12 +378,13 @@ module.run(['$templateCache', function($templateCache) {
     '    <div class="pip-composite-location layout-row layout-align-start-center flex"\n' +
     '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
     '\n' +
-    '        <pip-location pip-location-name="item.loc_name"\n' +
+    '        <pip-location class="flex"\n' +
+    '                      pip-location-name="item.loc_name"\n' +
     '                      pip-location-pos="item.loc_pos"\n' +
     '                      pip-collapse="true"\n' +
     '                      pip-show-location-icon="true"\n' +
     '                      ng-disabled="disableControl"\n' +
-    '                      pip-rebind="true" flex>\n' +
+    '                      pip-rebind="true">\n' +
     '        </pip-location>\n' +
     '    </div>\n' +
     '\n' +
@@ -502,12 +531,13 @@ module.run(['$templateCache', function($templateCache) {
     '    <div class="pip-composite-location layout-row layout-align-start-start flex"\n' +
     '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
     '\n' +
-    '        <pip-location pip-location-name="item.loc_name"\n' +
+    '        <pip-location class="flex"\n' +
+    '                      pip-location-name="item.loc_name"\n' +
     '                      pip-location-pos="item.loc_pos"\n' +
     '                      pip-show-location-icon="true"\n' +
     '                      pip-collapse="false"\n' +
     '                      ng-disabled="ngDisabled()"\n' +
-    '                      pip-rebind="true" flex>\n' +
+    '                      pip-rebind="true">\n' +
     '        </pip-location>\n' +
     '    </div>\n' +
     '\n' +
@@ -573,34 +603,6 @@ module.run(['$templateCache', function($templateCache) {
     '</md-button>');
 }]);
 })();
-
-/**
- * @file Registration of composite WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipComposite', [        
-        'pipContentSwitch',
-        'pipChecklistEdit',
-        'pipChecklistView',
-        'pipCompositeEdit',
-        'pipCompositeView',
-        'pipCompositeSummary',
-        'pipCompositeToolbar',
-        'pipCompositeFocused',
-
-        'pipMobileMouseup',
-        'pipMobileMousedown'
-    ]);
-    
-})();
-
-
 
 /**
  * @file Checklist edit control

@@ -47,12 +47,13 @@
     <div class="pip-composite-location layout-row layout-align-start-start flex"
          ng-if="item.type == 'location' && (item.loc_pos || item.loc_name)">
 
-        <pip-location pip-location-name="item.loc_name"
+        <pip-location class="flex"
+                      pip-location-name="item.loc_name"
                       pip-location-pos="item.loc_pos"
                       pip-show-location-icon="true"
                       pip-collapse="false"
                       ng-disabled="ngDisabled()"
-                      pip-rebind="true" flex>
+                      pip-rebind="true">
         </pip-location>
     </div>
 
