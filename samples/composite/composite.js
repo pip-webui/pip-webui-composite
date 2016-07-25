@@ -13,7 +13,14 @@
     });
 
     thisModule.controller('CompositeController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             $scope.emptyComposite = [];
 
             pipAppBar.hideShadow();
@@ -24,7 +31,11 @@
             $scope.compositeView = [
                 {
                     type: 'text',
-                    text: chance.paragraph(),
+                    text: 'Architecture is both the process and the product of planning, designing, ' +
+                    'and constructing buildings and other physical structures. Architectural works, ' +
+                    'in the material form of buildings, are often perceived as cultural symbols and ' +
+                    'as works of art. Historical civilizations are often identified with their surviving ' +
+                    'architectural achievements.',
                     docs: [],
                     pic_ids: [],
                     loc_pos: null,

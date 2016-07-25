@@ -5,7 +5,13 @@
     var thisModule = angular.module('appComposite.CompositeView', []);
 
     thisModule.controller('CompositeViewController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
 
             pipAppBar.hideShadow();
             pipAppBar.showTitleText('COMPOSITE_CONTROLS');

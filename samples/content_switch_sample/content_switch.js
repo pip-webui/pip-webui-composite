@@ -14,7 +14,13 @@
     });
 
     thisModule.controller('ContentSwitchController',
-        function ($scope, pipSession, pipAppBar) {
+        function ($scope, pipSession, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
 
             pipAppBar.hideShadow();
             pipAppBar.showTitleText('COMPOSITE_CONTROLS');

@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="../lib/pip-webui-entry.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-nav.css"/>
     <link rel="stylesheet" href="../dist/pip-webui-composite.css"/>
+
+    <link rel="stylesheet" href="../node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="../node_modules/pip-webui-tasks/node_modules/prismjs/themes/prism.css">
+
     <link rel="stylesheet" href="styles.css"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -36,6 +40,9 @@
     <script src="../lib/pip-webui-locations.js"></script>
     <script src="../lib/pip-webui-nav.js"></script>
     <script src="../lib/pip-webui-entry.js"></script>
+
+    <script src="../node_modules/prismjs/prism.js"></script>
+    <script src="../node_modules/pip-webui-tasks/node_modules/prismjs/prism.js"></script>
 
     <script src="../dist/pip-webui-composite.js"></script>
 
@@ -81,7 +88,7 @@
                                   pip-actions="pages"
                                   pip-dropdown-select="onDropdownSelect"
                                   pip-active-index="selected.pageIndex"></pip-dropdown>
-                    <div ui-view class="p24"></div>
+                    <div ui-view class="p24 scrolled"></div>
                 </div>
             </div>
         </pip-document>
