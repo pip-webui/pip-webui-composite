@@ -33,6 +33,34 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('checklist_view/checklist_view.html',
+    '<div ng-repeat="item in checklistContent track by $index">\n' +
+    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
+    '        <div class="pip-checklist-icon">\n' +
+    '            <md-checkbox  ng-model="item.checked"\n' +
+    '                          ng-click="onClick($event, item)"\n' +
+    '                          aria-label="COMPLETE"\n' +
+    '                          ng-disabled="ngDisabled()">\n' +
+    '            </md-checkbox>\n' +
+    '        </div>\n' +
+    '        <div class="pip-checklist-text flex">\n' +
+    '            <pip-markdown pip-text="item.text"\n' +
+    '                          pip-rebind="true"\n' +
+    '                          ng-disabled="true">\n' +
+    '            </pip-markdown>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('checklist_edit/checklist_edit.html',
     '<!--\n' +
     '@file Checklist edit control content\n' +
@@ -129,34 +157,6 @@ module.run(['$templateCache', function($templateCache) {
     '         pip-drop="true"\n' +
     '         pip-drop-success="onDropComplete(checklistContent.length, $data, $event, selected.id)">\n' +
     '        <div ng-class="{\'put_place\': selected.drag}"></div>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('checklist_view/checklist_view.html',
-    '<div ng-repeat="item in checklistContent track by $index">\n' +
-    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
-    '        <div class="pip-checklist-icon">\n' +
-    '            <md-checkbox  ng-model="item.checked"\n' +
-    '                          ng-click="onClick($event, item)"\n' +
-    '                          aria-label="COMPLETE"\n' +
-    '                          ng-disabled="ngDisabled()">\n' +
-    '            </md-checkbox>\n' +
-    '        </div>\n' +
-    '        <div class="pip-checklist-text flex">\n' +
-    '            <pip-markdown pip-text="item.text"\n' +
-    '                          pip-rebind="true"\n' +
-    '                          ng-disabled="true">\n' +
-    '            </pip-markdown>\n' +
-    '        </div>\n' +
     '    </div>\n' +
     '</div>');
 }]);
