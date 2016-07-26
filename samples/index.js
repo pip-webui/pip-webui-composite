@@ -8,7 +8,7 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
             // Modules from WebUI Framework
-            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipComposite', 'pipEntry', 'pipNav',
+            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipComposite', 'pipNav',
             'pipLayout',
             // testing data modules (have some data for example)
             'pipWebuiTests', 'pipSampleConfig',

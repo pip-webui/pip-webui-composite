@@ -6,13 +6,12 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav',
-        'pipAppBar']);
+    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipSideNav', 'pipAppBar']);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
+                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, $mdIconProvider) {
 
             var content = [
                 { title: 'Checklist', state: 'checklist', url: '/checklist',
