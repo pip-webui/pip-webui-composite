@@ -13,5 +13,5 @@ Initial version with composite view and edit, check list and content switch cont
 ### Breaking Changes
 No breaking changes in this version
 
-#### Bug Fixes
+### Bug Fixes
 No fixes in this version
