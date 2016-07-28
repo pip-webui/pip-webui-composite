@@ -1,38 +1,17 @@
-# Changelog
+# Pip.WebUI.Composite Changelog
 
-### 1.0.0 (2016-05-01)
------
+## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
-#### Enhancements:
+Initial version with composite view and edit, check list and content switch controls.
 
-* **composite** Composite content control
-* **composite summary** Composite summary control
-* **check list** Check list control
-* **check list edit** Check list edit control
-* **content switch** Content switch control
+### Features
+* **composite**: composite content control
+* **composite summary**: composite summary control
+* **check list**: check list view and edit controls
+* **content switch**: content switch control
 
+### Breaking Changes
+No breaking changes in this version
 
-#### Breaking Changes
-* API in most controls was changed since the previous version
-
-#### Bug Fixes
+### Bug Fixes
 No fixes in this version
-
-<br/>
-
-### 0.0.0 (2016-01-01) Template
------
-
-#### Enhancements:
-
-* new performed features
-
-#### Breaking Changes
-* what has been changed
-
-#### Bug Fixes
-
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
