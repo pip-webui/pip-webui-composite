@@ -1,4 +1,4 @@
-# Pip.WebUI.Settings User's Guide
+# Pip.WebUI.Composite User's Guide
 
 ## <a name="contents"></a> Contents
 - [Installing](#install)
