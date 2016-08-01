@@ -62,11 +62,11 @@
          ng-if="item.type == 'time'">
 
         <md-icon md-svg-icon="icons:time" class="lm0"></md-icon>
-        <pip-time-view
+        <pip-time-range
                 pip-start-date="item.start"
                 pip-end-date="item.end"
                 pip-rebind="true"
                 ng-disabled="ngDisabled()">
-        </pip-time-view>
+        </pip-time-range>
     </div>
 </div>

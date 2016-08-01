@@ -33,34 +33,6 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('checklist_view/checklist_view.html',
-    '<div ng-repeat="item in checklistContent track by $index">\n' +
-    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
-    '        <div class="pip-checklist-icon">\n' +
-    '            <md-checkbox  ng-model="item.checked"\n' +
-    '                          ng-click="onClick($event, item)"\n' +
-    '                          aria-label="COMPLETE"\n' +
-    '                          ng-disabled="ngDisabled()">\n' +
-    '            </md-checkbox>\n' +
-    '        </div>\n' +
-    '        <div class="pip-checklist-text flex">\n' +
-    '            <pip-markdown pip-text="item.text"\n' +
-    '                          pip-rebind="true"\n' +
-    '                          ng-disabled="true">\n' +
-    '            </pip-markdown>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('checklist_edit/checklist_edit.html',
     '<!--\n' +
     '@file Checklist edit control content\n' +
@@ -157,6 +129,34 @@ module.run(['$templateCache', function($templateCache) {
     '         pip-drop="true"\n' +
     '         pip-drop-success="onDropComplete(checklistContent.length, $data, $event, selected.id)">\n' +
     '        <div ng-class="{\'put_place\': selected.drag}"></div>\n' +
+    '    </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('checklist_view/checklist_view.html',
+    '<div ng-repeat="item in checklistContent track by $index">\n' +
+    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
+    '        <div class="pip-checklist-icon">\n' +
+    '            <md-checkbox  ng-model="item.checked"\n' +
+    '                          ng-click="onClick($event, item)"\n' +
+    '                          aria-label="COMPLETE"\n' +
+    '                          ng-disabled="ngDisabled()">\n' +
+    '            </md-checkbox>\n' +
+    '        </div>\n' +
+    '        <div class="pip-checklist-text flex">\n' +
+    '            <pip-markdown pip-text="item.text"\n' +
+    '                          pip-rebind="true"\n' +
+    '                          ng-disabled="true">\n' +
+    '            </pip-markdown>\n' +
+    '        </div>\n' +
     '    </div>\n' +
     '</div>');
 }]);
@@ -393,12 +393,12 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-if="item.type == \'time\' && (item.start || item.end)">\n' +
     '\n' +
     '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
-    '        <pip-time-view\n' +
+    '        <pip-time-range\n' +
     '                pip-start-date="item.start"\n' +
     '                pip-end-date="item.end"\n' +
     '                pip-rebind="true"\n' +
     '                ng-disabled="disableControl">\n' +
-    '        </pip-time-view>\n' +
+    '        </pip-time-range>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
@@ -546,12 +546,12 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-if="item.type == \'time\'">\n' +
     '\n' +
     '        <md-icon md-svg-icon="icons:time" class="lm0"></md-icon>\n' +
-    '        <pip-time-view\n' +
+    '        <pip-time-range\n' +
     '                pip-start-date="item.start"\n' +
     '                pip-end-date="item.end"\n' +
     '                pip-rebind="true"\n' +
     '                ng-disabled="ngDisabled()">\n' +
-    '        </pip-time-view>\n' +
+    '        </pip-time-range>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
