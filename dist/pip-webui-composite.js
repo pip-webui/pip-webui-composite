@@ -1,31 +1,3 @@
-/**
- * @file Registration of composite WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipComposite', [        
-        'pipContentSwitch',
-        'pipChecklistEdit',
-        'pipChecklistView',
-        'pipCompositeEdit',
-        'pipCompositeView',
-        'pipCompositeSummary',
-        'pipCompositeToolbar',
-        'pipCompositeFocused',
-
-        'pipMobileMouseup',
-        'pipMobileMousedown'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipComposite.Templates');
@@ -288,7 +260,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <!-- -->\n' +
     '            <div class="pip-section-content bp16-flex rp24-flex lp24-flex tp20"\n' +
     '                 ng-if="obj.type == \'time\'" pip-cancel-drag="true">\n' +
-    '                <pip-time-edit class="w-stretch"\n' +
+    '                <pip-time-range-edit class="w-stretch"\n' +
     '                               pip-start-date="obj.start"\n' +
     '                               pip-end-date="obj.end"\n' +
     '                               pip-size="$sizeGtSmall"\n' +
@@ -296,7 +268,7 @@ module.run(['$templateCache', function($templateCache) {
     '                               ng-disabled="ngDisabled()"\n' +
     '                               pip-start-label="{{ \'COMPOSITE_START_TIME\' | translate }}"\n' +
     '                               pip-end-label="{{ \'COMPOSITE_END_TIME\' | translate }}">\n' +
-    '                </pip-time-edit>\n' +
+    '                </pip-time-range-edit>\n' +
     '            </div>\n' +
     '        </div>\n' +
     '        <div class="pip-composite-item w-stretch"\n' +
@@ -603,6 +575,34 @@ module.run(['$templateCache', function($templateCache) {
     '</md-button>');
 }]);
 })();
+
+/**
+ * @file Registration of composite WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipComposite', [        
+        'pipContentSwitch',
+        'pipChecklistEdit',
+        'pipChecklistView',
+        'pipCompositeEdit',
+        'pipCompositeView',
+        'pipCompositeSummary',
+        'pipCompositeToolbar',
+        'pipCompositeFocused',
+
+        'pipMobileMouseup',
+        'pipMobileMousedown'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Checklist edit control

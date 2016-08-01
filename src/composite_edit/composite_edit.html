@@ -116,7 +116,7 @@
             <!-- -->
             <div class="pip-section-content bp16-flex rp24-flex lp24-flex tp20"
                  ng-if="obj.type == 'time'" pip-cancel-drag="true">
-                <pip-time-edit class="w-stretch"
+                <pip-time-range-edit class="w-stretch"
                                pip-start-date="obj.start"
                                pip-end-date="obj.end"
                                pip-size="$sizeGtSmall"
@@ -124,7 +124,7 @@
                                ng-disabled="ngDisabled()"
                                pip-start-label="{{ 'COMPOSITE_START_TIME' | translate }}"
                                pip-end-label="{{ 'COMPOSITE_END_TIME' | translate }}">
-                </pip-time-edit>
+                </pip-time-range-edit>
             </div>
         </div>
         <div class="pip-composite-item w-stretch"
