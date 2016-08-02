@@ -1,3 +1,59 @@
+/**
+ * @file Registration of composite WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipComposite', [        
+        'pipContentSwitch',
+        'pipChecklistEdit',
+        'pipChecklistView',
+        'pipCompositeEdit',
+        'pipCompositeView',
+        'pipCompositeSummary',
+        'pipCompositeToolbar',
+        'pipCompositeFocused',
+
+        'pipMobileMouseup',
+        'pipMobileMousedown'
+    ]);
+    
+})();
+
+
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('checklist_view/checklist_view.html',
+    '<div ng-repeat="item in checklistContent track by $index">\n' +
+    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
+    '        <div class="pip-checklist-icon">\n' +
+    '            <md-checkbox  ng-model="item.checked"\n' +
+    '                          ng-click="onClick($event, item)"\n' +
+    '                          aria-label="COMPLETE"\n' +
+    '                          ng-disabled="ngDisabled()">\n' +
+    '            </md-checkbox>\n' +
+    '        </div>\n' +
+    '        <div class="pip-checklist-text flex">\n' +
+    '            <pip-markdown pip-text="item.text"\n' +
+    '                          pip-rebind="true"\n' +
+    '                          ng-disabled="true">\n' +
+    '            </pip-markdown>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>');
+}]);
+})();
+
 (function(module) {
 try {
   module = angular.module('pipComposite.Templates');
@@ -101,189 +157,6 @@ module.run(['$templateCache', function($templateCache) {
     '         pip-drop="true"\n' +
     '         pip-drop-success="onDropComplete(checklistContent.length, $data, $event, selected.id)">\n' +
     '        <div ng-class="{\'put_place\': selected.drag}"></div>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('checklist_view/checklist_view.html',
-    '<div ng-repeat="item in checklistContent track by $index">\n' +
-    '    <div class="pip-checklist-item layout-row layout-align-start-start">\n' +
-    '        <div class="pip-checklist-icon">\n' +
-    '            <md-checkbox  ng-model="item.checked"\n' +
-    '                          ng-click="onClick($event, item)"\n' +
-    '                          aria-label="COMPLETE"\n' +
-    '                          ng-disabled="ngDisabled()">\n' +
-    '            </md-checkbox>\n' +
-    '        </div>\n' +
-    '        <div class="pip-checklist-text flex">\n' +
-    '            <pip-markdown pip-text="item.text"\n' +
-    '                          pip-rebind="true"\n' +
-    '                          ng-disabled="true">\n' +
-    '            </pip-markdown>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_edit/composite_edit.html',
-    '<!--\n' +
-    '@file Composite edit control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="divider-top">\n' +
-    '    <div class="pip-composite-body"\n' +
-    '         ng-show="compositeContent.length != 0"\n' +
-    '         ng-class="{\'drag-active\': selected.drag}">\n' +
-    '\n' +
-    '        <div class="pip-composite-item"\n' +
-    '             ng-repeat="obj in compositeContent track by obj.id"\n' +
-    '             ng-mousedown="onClick($event, $index, obj)"\n' +
-    '             ng-class="{\'selected-content\': isSelectedSection($index, obj),\n' +
-    '                        \'composite-animate\': !obj.empty && compositeContent.length > 1}"\n' +
-    '             ng-keyup="onKeyUp($event)"\n' +
-    '             ng-keydown="onKeyDown($event, $index, obj)"\n' +
-    '             pip-drag="compositeContent.length > 1 && selected.drag"\n' +
-    '             pip-touch-delay="10"\n' +
-    '             pip-drag-data="obj"\n' +
-    '             pip-scroll-container="pipScrollContainer"\n' +
-    '             pip-drop="true"\n' +
-    '             pip-force-touch = "true"\n' +
-    '             pip-drag-stop="onStop(selected.id)"\n' +
-    '             pip-drag-start="onStart(selected.id)"\n' +
-    '             pip-drop-success="onDropComplete($index, $data, $event, selected.id)"\n' +
-    '             id="{{\'composite-item-\' + selected.id + \'-\' + $index}}">\n' +
-    '\n' +
-    '            <!--<div ng-class="{\'putt_box\': selected.drag}"></div>-->\n' +
-    '            <div class="putt_box"></div>\n' +
-    '            <div class="pip-section-header layout-row layout-align-start-center"\n' +
-    '                 ng-if="!obj.empty">\n' +
-    '                <div class="w38"></div>\n' +
-    '                <md-button class="md-icon-button md-icon-button-little icon-rearrange-btn no-ripple-container rm8 cursor-move"\n' +
-    '                           ng-if="!ngDisabled() && compositeContent.length > 1"\n' +
-    '                           pip-drag-handle\n' +
-    '                           pip-mobile-mousedown="onDownDragg($event, obj)"\n' +
-    '                           pip-mobile-mouseup="onDraggEnd()"\n' +
-    '                           tabindex="-1"\n' +
-    '                           aria-label="COMPOSITE-DRAGG"\n' +
-    '                           ng-hide="compositeContent.length == 1">\n' +
-    '                    <md-icon class="composite-icon cursor-move" md-svg-icon="icons:handle"></md-icon>\n' +
-    '                </md-button>\n' +
-    '                <div>\n' +
-    '                    <md-button class="md-icon-button md-icon-button-little rm8"\n' +
-    '                               ng-click="onDeleteItem($index)"\n' +
-    '                               ng-disabled="ngDisabled()"\n' +
-    '                               aria-label="COMPOSITE-DELETE">\n' +
-    '                        <md-icon class="composite-icon" md-svg-icon="icons:cross"></md-icon>\n' +
-    '                    </md-button>\n' +
-    '                </div>\n' +
-    '            </div>\n' +
-    '            <!--pip-prevent-drag-->\n' +
-    '            <!-- for text -->\n' +
-    '            <div class="pip-section-content rp24-flex lp24-flex tp16 bp16"\n' +
-    '                 ng-if="obj.type == \'text\'" pip-cancel-drag="true">\n' +
-    '                <md-input-container class="p0 m0 w-stretch" md-no-float>\n' +
-    '                            <textarea ng-model="obj.text" aria-label="text"\n' +
-    '                                      placeholder="{{ isFirst ? compositePlaceholder : \'TEXT\' | translate}}"\n' +
-    '                                      id="{{\'composite-item-text-\' + selected.id + \'-\' + $index}}"\n' +
-    '                                      ng-change="onContentChange(obj)"\n' +
-    '                                      pip-cancel-drag="true"\n' +
-    '                                      ng-disabled="ngDisabled()">\n' +
-    '                            </textarea>\n' +
-    '                </md-input-container>\n' +
-    '            </div>\n' +
-    '            <!-- -->\n' +
-    '            <div class="pip-section-content rp24-flex lp24-flex vp20"\n' +
-    '                 ng-if="obj.type == \'pictures\'" pip-cancel-drag="true">\n' +
-    '                <pip-picture-list-edit class="w-stretch"\n' +
-    '                                       pip-cancel-drag="true"\n' +
-    '                                       pip-picture-ids="obj.pic_ids"\n' +
-    '                                       pip-changed="onContentChange(obj)"\n' +
-    '                                       pip-created="obj.pictures = $event.sender"\n' +
-    '                                       pip-cancel-drag="true"\n' +
-    '                                       pip-added-picture="addedContent"\n' +
-    '                                       ng-disabled="ngDisabled()">\n' +
-    '                </pip-picture-list-edit>\n' +
-    '            </div>\n' +
-    '            <!-- -->\n' +
-    '            <div class="pip-section-content rp24-flex lp24-flex vp20"\n' +
-    '                 ng-if="obj.type == \'documents\'" pip-cancel-drag="true">\n' +
-    '                <pip-document-list-edit class="w-stretch"\n' +
-    '                                        pip-documents="obj.docs"\n' +
-    '                                        pip-cancel-drag="true"\n' +
-    '                                        pip-changed="onContentChange(obj)"\n' +
-    '                                        pip-cancel-drag="true"\n' +
-    '                                        pip-created="obj.documents = $event.sender"\n' +
-    '                                        pip-added-document="addedContent"\n' +
-    '                                        ng-disabled="ngDisabled()">\n' +
-    '                </pip-document-list-edit>\n' +
-    '            </div>\n' +
-    '\n' +
-    '            <div class="pip-section-content layout-row layout-align-start-center"\n' +
-    '                 ng-if="obj.type == \'checklist\'" pip-cancel-drag="true">\n' +
-    '                <pip-checklist-edit pip-options="obj.checklist"\n' +
-    '                                    pip-draggable="isActiveChecklist(obj)"\n' +
-    '                                    pip-changed="onContentChange(obj)"\n' +
-    '                                    ng-disabled="ngDisabled()"\n' +
-    '                                    pip-scroll-container="{{pipScrollContainer}}"\n' +
-    '                                    pip-rebind="true">\n' +
-    '                </pip-checklist-edit>\n' +
-    '            </div>\n' +
-    '\n' +
-    '            <div class="pip-section-content vp20 rp24-flex lp24-flex"\n' +
-    '                 ng-if="obj.type == \'location\'" pip-cancel-drag="true">\n' +
-    '                <pip-location-edit class="pip-location-attachments w-stretch"\n' +
-    '                                   pip-location-name="obj.loc_name"\n' +
-    '                                   pip-location-pos="obj.loc_pos"\n' +
-    '                                   pip-cancel-drag="true"\n' +
-    '                                   pip-location-holder="pipLocationHolder"\n' +
-    '                                   pip-changed="onContentChange(obj)"\n' +
-    '                                   ng-disabled="ngDisabled()">\n' +
-    '                </pip-location-edit>\n' +
-    '            </div>\n' +
-    '            <!-- -->\n' +
-    '            <div class="pip-section-content bp16-flex rp24-flex lp24-flex tp20"\n' +
-    '                 ng-if="obj.type == \'time\'" pip-cancel-drag="true">\n' +
-    '                <pip-time-range-edit class="w-stretch"\n' +
-    '                               pip-start-date="obj.start"\n' +
-    '                               pip-end-date="obj.end"\n' +
-    '                               pip-size="$sizeGtSmall"\n' +
-    '                               pip-changed="onContentChange(obj)"\n' +
-    '                               ng-disabled="ngDisabled()"\n' +
-    '                               pip-start-label="{{ \'COMPOSITE_START_TIME\' | translate }}"\n' +
-    '                               pip-end-label="{{ \'COMPOSITE_END_TIME\' | translate }}">\n' +
-    '                </pip-time-range-edit>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '        <div class="pip-composite-item w-stretch"\n' +
-    '             pip-drag="false"\n' +
-    '             pip-drop="true"\n' +
-    '             pip-drop-success="onDropComplete(compositeContent.length, $data, $event, selected.id)"\n' +
-    '             pip-drag-stop="onStop(selected.id)"\n' +
-    '             pip-drag-start="onStart(selected.id)"\n' +
-    '             id="{{\'pip-composite-last-\' + selected.id}}">\n' +
-    '\n' +
-    '            <!--<div ng-class="{\'putt_box\': selected.drag}"></div>-->\n' +
-    '            <div class="putt_box"></div>\n' +
-    '            <div class="pip-section-content h24" style="border: 0px!important;">\n' +
-    '            </div>\n' +
-    '        </div>\n' +
     '    </div>\n' +
     '</div>');
 }]);
@@ -453,6 +326,161 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_edit/composite_edit.html',
+    '<!--\n' +
+    '@file Composite edit control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="divider-top">\n' +
+    '    <div class="pip-composite-body"\n' +
+    '         ng-show="compositeContent.length != 0"\n' +
+    '         ng-class="{\'drag-active\': selected.drag}">\n' +
+    '\n' +
+    '        <div class="pip-composite-item"\n' +
+    '             ng-repeat="obj in compositeContent track by obj.id"\n' +
+    '             ng-mousedown="onClick($event, $index, obj)"\n' +
+    '             ng-class="{\'selected-content\': isSelectedSection($index, obj),\n' +
+    '                        \'composite-animate\': !obj.empty && compositeContent.length > 1}"\n' +
+    '             ng-keyup="onKeyUp($event)"\n' +
+    '             ng-keydown="onKeyDown($event, $index, obj)"\n' +
+    '             pip-drag="compositeContent.length > 1 && selected.drag"\n' +
+    '             pip-touch-delay="10"\n' +
+    '             pip-drag-data="obj"\n' +
+    '             pip-scroll-container="pipScrollContainer"\n' +
+    '             pip-drop="true"\n' +
+    '             pip-force-touch = "true"\n' +
+    '             pip-drag-stop="onStop(selected.id)"\n' +
+    '             pip-drag-start="onStart(selected.id)"\n' +
+    '             pip-drop-success="onDropComplete($index, $data, $event, selected.id)"\n' +
+    '             id="{{\'composite-item-\' + selected.id + \'-\' + $index}}">\n' +
+    '\n' +
+    '            <!--<div ng-class="{\'putt_box\': selected.drag}"></div>-->\n' +
+    '            <div class="putt_box"></div>\n' +
+    '            <div class="pip-section-header layout-row layout-align-start-center"\n' +
+    '                 ng-if="!obj.empty">\n' +
+    '                <div class="w38"></div>\n' +
+    '                <md-button class="md-icon-button md-icon-button-little icon-rearrange-btn no-ripple-container rm8 cursor-move"\n' +
+    '                           ng-if="!ngDisabled() && compositeContent.length > 1"\n' +
+    '                           pip-drag-handle\n' +
+    '                           pip-mobile-mousedown="onDownDragg($event, obj)"\n' +
+    '                           pip-mobile-mouseup="onDraggEnd()"\n' +
+    '                           tabindex="-1"\n' +
+    '                           aria-label="COMPOSITE-DRAGG"\n' +
+    '                           ng-hide="compositeContent.length == 1">\n' +
+    '                    <md-icon class="composite-icon cursor-move" md-svg-icon="icons:handle"></md-icon>\n' +
+    '                </md-button>\n' +
+    '                <div>\n' +
+    '                    <md-button class="md-icon-button md-icon-button-little rm8"\n' +
+    '                               ng-click="onDeleteItem($index)"\n' +
+    '                               ng-disabled="ngDisabled()"\n' +
+    '                               aria-label="COMPOSITE-DELETE">\n' +
+    '                        <md-icon class="composite-icon" md-svg-icon="icons:cross"></md-icon>\n' +
+    '                    </md-button>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '            <!--pip-prevent-drag-->\n' +
+    '            <!-- for text -->\n' +
+    '            <div class="pip-section-content rp24-flex lp24-flex tp16 bp16"\n' +
+    '                 ng-if="obj.type == \'text\'" pip-cancel-drag="true">\n' +
+    '                <md-input-container class="p0 m0 w-stretch" md-no-float>\n' +
+    '                            <textarea ng-model="obj.text" aria-label="text"\n' +
+    '                                      placeholder="{{ isFirst ? compositePlaceholder : \'TEXT\' | translate}}"\n' +
+    '                                      id="{{\'composite-item-text-\' + selected.id + \'-\' + $index}}"\n' +
+    '                                      ng-change="onContentChange(obj)"\n' +
+    '                                      pip-cancel-drag="true"\n' +
+    '                                      ng-disabled="ngDisabled()">\n' +
+    '                            </textarea>\n' +
+    '                </md-input-container>\n' +
+    '            </div>\n' +
+    '            <!-- -->\n' +
+    '            <div class="pip-section-content rp24-flex lp24-flex vp20"\n' +
+    '                 ng-if="obj.type == \'pictures\'" pip-cancel-drag="true">\n' +
+    '                <pip-picture-list-edit class="w-stretch"\n' +
+    '                                       pip-cancel-drag="true"\n' +
+    '                                       pip-picture-ids="obj.pic_ids"\n' +
+    '                                       pip-changed="onContentChange(obj)"\n' +
+    '                                       pip-created="obj.pictures = $event.sender"\n' +
+    '                                       pip-cancel-drag="true"\n' +
+    '                                       pip-added-picture="addedContent"\n' +
+    '                                       ng-disabled="ngDisabled()">\n' +
+    '                </pip-picture-list-edit>\n' +
+    '            </div>\n' +
+    '            <!-- -->\n' +
+    '            <div class="pip-section-content rp24-flex lp24-flex vp20"\n' +
+    '                 ng-if="obj.type == \'documents\'" pip-cancel-drag="true">\n' +
+    '                <pip-document-list-edit class="w-stretch"\n' +
+    '                                        pip-documents="obj.docs"\n' +
+    '                                        pip-cancel-drag="true"\n' +
+    '                                        pip-changed="onContentChange(obj)"\n' +
+    '                                        pip-cancel-drag="true"\n' +
+    '                                        pip-created="obj.documents = $event.sender"\n' +
+    '                                        pip-added-document="addedContent"\n' +
+    '                                        ng-disabled="ngDisabled()">\n' +
+    '                </pip-document-list-edit>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="pip-section-content layout-row layout-align-start-center"\n' +
+    '                 ng-if="obj.type == \'checklist\'" pip-cancel-drag="true">\n' +
+    '                <pip-checklist-edit pip-options="obj.checklist"\n' +
+    '                                    pip-draggable="isActiveChecklist(obj)"\n' +
+    '                                    pip-changed="onContentChange(obj)"\n' +
+    '                                    ng-disabled="ngDisabled()"\n' +
+    '                                    pip-scroll-container="{{pipScrollContainer}}"\n' +
+    '                                    pip-rebind="true">\n' +
+    '                </pip-checklist-edit>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="pip-section-content vp20 rp24-flex lp24-flex"\n' +
+    '                 ng-if="obj.type == \'location\'" pip-cancel-drag="true">\n' +
+    '                <pip-location-edit class="pip-location-attachments w-stretch"\n' +
+    '                                   pip-location-name="obj.loc_name"\n' +
+    '                                   pip-location-pos="obj.loc_pos"\n' +
+    '                                   pip-cancel-drag="true"\n' +
+    '                                   pip-location-holder="pipLocationHolder"\n' +
+    '                                   pip-changed="onContentChange(obj)"\n' +
+    '                                   ng-disabled="ngDisabled()">\n' +
+    '                </pip-location-edit>\n' +
+    '            </div>\n' +
+    '            <!-- -->\n' +
+    '            <div class="pip-section-content bp16-flex rp24-flex lp24-flex tp20"\n' +
+    '                 ng-if="obj.type == \'time\'" pip-cancel-drag="true">\n' +
+    '                <pip-time-range-edit class="w-stretch"\n' +
+    '                               pip-start-date="obj.start"\n' +
+    '                               pip-end-date="obj.end"\n' +
+    '                               pip-size="$sizeGtSmall"\n' +
+    '                               pip-changed="onContentChange(obj)"\n' +
+    '                               ng-disabled="ngDisabled()"\n' +
+    '                               pip-start-label="{{ \'COMPOSITE_START_TIME\' | translate }}"\n' +
+    '                               pip-end-label="{{ \'COMPOSITE_END_TIME\' | translate }}">\n' +
+    '                </pip-time-range-edit>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '        <div class="pip-composite-item w-stretch"\n' +
+    '             pip-drag="false"\n' +
+    '             pip-drop="true"\n' +
+    '             pip-drop-success="onDropComplete(compositeContent.length, $data, $event, selected.id)"\n' +
+    '             pip-drag-stop="onStop(selected.id)"\n' +
+    '             pip-drag-start="onStart(selected.id)"\n' +
+    '             id="{{\'pip-composite-last-\' + selected.id}}">\n' +
+    '\n' +
+    '            <!--<div ng-class="{\'putt_box\': selected.drag}"></div>-->\n' +
+    '            <div class="putt_box"></div>\n' +
+    '            <div class="pip-section-content h24" style="border: 0px!important;">\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_view/composite_view.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -577,7 +605,7 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Registration of composite WebUI controls
+ * @file Checklist view control
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
@@ -586,23 +614,92 @@ module.run(['$templateCache', function($templateCache) {
 (function () {
     'use strict';
 
-    angular.module('pipComposite', [        
-        'pipContentSwitch',
-        'pipChecklistEdit',
-        'pipChecklistView',
-        'pipCompositeEdit',
-        'pipCompositeView',
-        'pipCompositeSummary',
-        'pipCompositeToolbar',
-        'pipCompositeFocused',
+    var thisModule = angular.module("pipChecklistView", ['pipCore', 'pipComposite.Templates']);
 
-        'pipMobileMouseup',
-        'pipMobileMousedown'
-    ]);
-    
+    thisModule.directive('pipChecklistView',
+        function () {
+            return {
+                restrict: 'EA',
+                replace: false,
+                scope: {
+                    ngDisabled: '&',
+                    pipChanged: '&',
+                    pipOptions: '='
+                },
+                templateUrl: 'checklist_view/checklist_view.html',
+                controller: 'pipChecklistViewController'
+            }
+        }
+    );
+
+    thisModule.controller('pipChecklistViewController',
+        ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+
+            $scope.disableControl = pipUtils.toBoolean($scope.ngDisabled()) != false;
+            $scope.rebind = pipUtils.toBoolean($attrs.pipRebind);
+            $scope.selected = {};
+            $scope.selected.isChanged = false;
+
+            generateList($scope.pipOptions);
+
+            // Add class
+            $element.addClass('pip-checklist-view');
+
+            // Watch for options changes
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watchCollection('pipOptions', function (newValue) {
+                    if (!$scope.selected.isChanged) {
+                        generateList($scope.pipOptions);
+                    } else {
+                        $scope.selected.isChanged = false;
+                    }
+                });
+            }
+
+            $scope.updateContents = updateContents;
+            $scope.onClick = onClick;
+
+            return;
+
+            function updateContents() {
+                $scope.selected.isChanged = true;
+                $scope.pipOptions = $scope.checklistContent;
+            };
+
+            function onChecklistChange() {
+                updateContents();
+                if ($scope.pipChanged) {
+                    $scope.pipChanged();
+                }
+            };
+
+            function clearList() {
+                $scope.checklistContent = [];
+            };
+
+            function generateList(content) {
+                if (!content ||  content.length < 1) {
+                    clearList();
+                    return;
+                } else {
+                    $scope.checklistContent = [];
+                    _.each(content, function(item){
+                        $scope.checklistContent.push(item);
+                    });
+                }
+            };
+
+            function onClick($event, item) {
+                if ($event) $event.stopPropagation();
+                if ($scope.ngDisabled && $scope.ngDisabled()) return;
+
+                onChecklistChange();
+            };
+
+        }]
+    );
+
 })();
-
-
 
 /**
  * @file Checklist edit control
@@ -1127,103 +1224,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })();
-/**
- * @file Checklist view control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipChecklistView", ['pipCore', 'pipComposite.Templates']);
-
-    thisModule.directive('pipChecklistView',
-        function () {
-            return {
-                restrict: 'EA',
-                replace: false,
-                scope: {
-                    ngDisabled: '&',
-                    pipChanged: '&',
-                    pipOptions: '='
-                },
-                templateUrl: 'checklist_view/checklist_view.html',
-                controller: 'pipChecklistViewController'
-            }
-        }
-    );
-
-    thisModule.controller('pipChecklistViewController',
-        ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
-
-            $scope.disableControl = pipUtils.toBoolean($scope.ngDisabled()) != false;
-            $scope.rebind = pipUtils.toBoolean($attrs.pipRebind);
-            $scope.selected = {};
-            $scope.selected.isChanged = false;
-
-            generateList($scope.pipOptions);
-
-            // Add class
-            $element.addClass('pip-checklist-view');
-
-            // Watch for options changes
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watchCollection('pipOptions', function (newValue) {
-                    if (!$scope.selected.isChanged) {
-                        generateList($scope.pipOptions);
-                    } else {
-                        $scope.selected.isChanged = false;
-                    }
-                });
-            }
-
-            $scope.updateContents = updateContents;
-            $scope.onClick = onClick;
-
-            return;
-
-            function updateContents() {
-                $scope.selected.isChanged = true;
-                $scope.pipOptions = $scope.checklistContent;
-            };
-
-            function onChecklistChange() {
-                updateContents();
-                if ($scope.pipChanged) {
-                    $scope.pipChanged();
-                }
-            };
-
-            function clearList() {
-                $scope.checklistContent = [];
-            };
-
-            function generateList(content) {
-                if (!content ||  content.length < 1) {
-                    clearList();
-                    return;
-                } else {
-                    $scope.checklistContent = [];
-                    _.each(content, function(item){
-                        $scope.checklistContent.push(item);
-                    });
-                }
-            };
-
-            function onClick($event, item) {
-                if ($event) $event.stopPropagation();
-                if ($scope.ngDisabled && $scope.ngDisabled()) return;
-
-                onChecklistChange();
-            };
-
-        }]
-    );
-
-})();
-
 /**
  * @file Composite edit control
  * @copyright Digital Living Software Corp. 2014-2016
@@ -1940,6 +1940,98 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 /**
+ * @file Content switch control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Remove after composite content control is ready
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
+
+    thisModule.directive('pipContentSwitch', 
+        ['$parse', function($parse) {
+            return {
+                restrict: 'EA',
+                scope: false,
+                templateUrl: 'content_switch/content_switch.html',
+                link: function($scope, $element, $attrs) {
+    
+                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
+                    var parentElement = parentElementNameGetter($scope);
+
+                    $scope.onButtonClick = onButtonClick;
+
+                    // Initialization
+                    setOption();
+                    $element.addClass('pip-content-switch');
+
+                    return ;
+
+                    function scrollTo(childElement) {
+                        setTimeout(function () {
+                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
+                            if (modDiff < 20) return;
+                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
+                            $(parentElement).animate({
+                                scrollTop: scrollTo + 'px'
+                            }, 300);
+                        }, 100);
+                    };
+    
+                    function setOption() {
+                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
+                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
+                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
+                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
+                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
+                        } else {
+                            $scope.showIconPicture = true;
+                            $scope.showIconDocument = true;
+                            $scope.showIconLocation = true;
+                            $scope.showIconEvent = true;
+                        }
+                    };
+    
+                    function onButtonClick(type) {
+                        if (!parentElement) return;
+    
+                        switch(type){
+                            case 'event':
+                                // On Event click action
+                                if ($scope.showEvent)
+                                    scrollTo('.event-edit');
+                                break;
+                            case 'documents':
+                                // On Documents click action
+                                if ($scope.showDocuments)
+                                    scrollTo('.pip-document-list-edit');
+                                break;
+                            case 'pictures':
+                                // On Pictures click action
+                                if ($scope.showPictures)
+                                    scrollTo('.pip-picture-list-edit');
+                                break;
+                            case 'location':
+                                // On Location click action
+                                if ($scope.showLocation)
+                                    scrollTo('.pip-location-edit');
+                                break;
+                        };
+                    };
+
+                }
+            };
+        }]
+    );
+
+})();
+
+/**
  * @file Composite view control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2043,98 +2135,6 @@ module.run(['$templateCache', function($templateCache) {
                 $scope.compositeContent = [];
             };
 
-        }]
-    );
-
-})();
-
-/**
- * @file Content switch control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Remove after composite content control is ready
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
-
-    thisModule.directive('pipContentSwitch', 
-        ['$parse', function($parse) {
-            return {
-                restrict: 'EA',
-                scope: false,
-                templateUrl: 'content_switch/content_switch.html',
-                link: function($scope, $element, $attrs) {
-    
-                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
-                    var parentElement = parentElementNameGetter($scope);
-
-                    $scope.onButtonClick = onButtonClick;
-
-                    // Initialization
-                    setOption();
-                    $element.addClass('pip-content-switch');
-
-                    return ;
-
-                    function scrollTo(childElement) {
-                        setTimeout(function () {
-                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
-                            if (modDiff < 20) return;
-                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
-                            $(parentElement).animate({
-                                scrollTop: scrollTo + 'px'
-                            }, 300);
-                        }, 100);
-                    };
-    
-                    function setOption() {
-                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
-                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
-                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
-                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
-                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
-                        } else {
-                            $scope.showIconPicture = true;
-                            $scope.showIconDocument = true;
-                            $scope.showIconLocation = true;
-                            $scope.showIconEvent = true;
-                        }
-                    };
-    
-                    function onButtonClick(type) {
-                        if (!parentElement) return;
-    
-                        switch(type){
-                            case 'event':
-                                // On Event click action
-                                if ($scope.showEvent)
-                                    scrollTo('.event-edit');
-                                break;
-                            case 'documents':
-                                // On Documents click action
-                                if ($scope.showDocuments)
-                                    scrollTo('.pip-document-list-edit');
-                                break;
-                            case 'pictures':
-                                // On Pictures click action
-                                if ($scope.showPictures)
-                                    scrollTo('.pip-picture-list-edit');
-                                break;
-                            case 'location':
-                                // On Location click action
-                                if ($scope.showLocation)
-                                    scrollTo('.pip-location-edit');
-                                break;
-                        };
-                    };
-
-                }
-            };
         }]
     );
 
