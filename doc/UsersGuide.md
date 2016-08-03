@@ -61,7 +61,7 @@ This directive relies on **files** operation from standard REST API.
     </pip-composite-view>
 ```
 
-Todo: Add image of the composite view
+<img src="images/img-composite-view.png"/>
 
 ### Attributes
 * **pip-contents** - content object 
@@ -85,7 +85,7 @@ This directive relies on **files** operation from standard REST API.
 </pip-composite-summary>
 ```
 
-Todo: Add image of the composite summary
+<img src="images/img-composite-summary.png"/>
 
 ### Attributes
 * **pip-contents** - content object 
@@ -113,7 +113,7 @@ This directive relies on **files** operation from standard REST API.
 </pip-composite-edit>
 ```
 
-Todo: Add image of the composite edit control
+<img src="images/img-composite-edit.png"/>
 
 ### Attributes
 * **pip-contents** - content object 
@@ -135,7 +135,7 @@ Todo: Add image of the composite edit control
 </pip-composite-view>
 ```
 
-Todo: Add image of the checklist view control
+<img src="images/img-composite-view.png"/>
 
 ### Attributes
 * **pip-contents** - content object 
@@ -155,7 +155,7 @@ Todo: Add image of the checklist view control
 </pip-checklist-edit>
 ```
 
-Todo: Add image of the checklist edit control
+<img src="images/img-checklist-edit.png"/>
 
 ### Attributes
 * **pip-options** - array texts for checkboxes  
@@ -172,7 +172,7 @@ Todo: Add image of the checklist edit control
  <pip-content-switch pip-parent-element-name="'.sample-output'"> </pip-content-switch>
 ```
 
-Todo: Add image of the content switch control
+<img src="images/img-composite-switch.png"/>
 
 ### Attributes
 * **pip-parent-element-name** - parent element class
