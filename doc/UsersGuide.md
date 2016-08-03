@@ -64,7 +64,8 @@ This directive relies on **files** operation from standard REST API.
 Todo: Add image of the composite view
 
 ### Attributes
-Todo: Describe attributes of this directive
+* **pip-contents** - content object 
+* **pip-rebind** - updating pip-content field
 
 
 ## <a name="composite_summary"></a> pip-composite-summary
@@ -87,7 +88,11 @@ This directive relies on **files** operation from standard REST API.
 Todo: Add image of the composite summary
 
 ### Attributes
-Todo: Describe attributes of this directive
+* **pip-contents** - content object 
+* **pip-rebind** - updating pip-content field
+* **pip-text-size** - max count lines of text objects 
+* **pip-checklist-size** - max count checkbox items in one object 
+* **pip-secondary-block-types** - array types on secondary blocks
 
 
 ## <a name="composite_edit"></a> pip-composite-edit
@@ -111,7 +116,11 @@ This directive relies on **files** operation from standard REST API.
 Todo: Add image of the composite edit control
 
 ### Attributes
-Todo: Describe attributes of this directive
+* **pip-contents** - content object 
+* **pip-rebind** - updating pip-content field
+* **pip-scroll-container** - class in scroll container
+* **pip-added-content** - possibility add content 
+* **pip-composite-id** - id of composite control
 
 
 ## <a name="checklist_view"></a> pip-checklist-view
@@ -129,8 +138,8 @@ Todo: Describe attributes of this directive
 Todo: Add image of the checklist view control
 
 ### Attributes
-Todo: Describe attributes of this directive
-
+* **pip-contents** - content object 
+* **pip-rebind** - updating pip-content field
 
 ## <a name="checklist_edit"></a> pip-checklist-edit
 
@@ -149,8 +158,10 @@ Todo: Describe attributes of this directive
 Todo: Add image of the checklist edit control
 
 ### Attributes
-Todo: Describe attributes of this directive
-
+* **pip-options** - array texts for checkboxes  
+* **pip-rebind** - updating pip-options field
+* **pip-changed** - function for updating pip-options 
+* **pip-draggable** - possibility drag and drop
 
 ## <a name="content_switch"></a> pip-content-switch
 
@@ -158,14 +169,13 @@ Todo: Describe attributes of this directive
 
 ### Usage
 ```html
- <pip-content-switch class="flex" pip-parent-element-name="'.sample-output'"> </pip-content-switch>
+ <pip-content-switch pip-parent-element-name="'.sample-output'"> </pip-content-switch>
 ```
 
 Todo: Add image of the content switch control
 
 ### Attributes
-Todo: Describe attributes of this directive
-
+* **pip-parent-element-name** - parent element class
 
 ## <a name="issues"></a> Questions and bugs
 
