@@ -113,7 +113,7 @@ This directive relies on **files** operation from standard REST API.
 </pip-composite-edit>
 ```
 
-<img src="images/img-composite-edit.png"/>
+<img src="images/img-composite-filled.png"/>
 
 ### Attributes
 * **pip-contents** - content object 
@@ -129,17 +129,18 @@ This directive relies on **files** operation from standard REST API.
 
 ### Usage
 ```html
-<pip-composite-view pip-contents="compositeView"
-                    ng-disabled="isDisabled()"
+<pip-checklist-view pip-options="viewChecklist"
+                    ng-disabled="emptyChecklistViewDisabled"
                     pip-rebind="true">
-</pip-composite-view>
+</pip-checklist-view>
+
 ```
 
-<img src="images/img-composite-view.png"/>
+<img src="images/img-checklist-view.png"/>
 
 ### Attributes
-* **pip-contents** - content object 
-* **pip-rebind** - updating pip-content field
+* **pip-options** - array content 
+* **pip-rebind** - updating pip-options field
 
 ## <a name="checklist_edit"></a> pip-checklist-edit
 
