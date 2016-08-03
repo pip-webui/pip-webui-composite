@@ -51,10 +51,15 @@ angular.module('myApp',[..., 'pipComposite']);
 **pip-composite-view** controls shows read-only version of composite content. The content structured as blocks with hypertext, images, documents, locations, checklists. The only allowed action is to check/uncheck item in checklists.
 
 This directive relies on **files** operation from standard REST API.
-Todo: Add reference to pip-webui-rest module with protocol definition
+[Go to Pip.WebUI.Rest Users's Guide](https://github.com/pip-webui/pip-webui-rest/blob/master/doc/UsersGuide.md)
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+    <pip-composite-view pip-contents="compositeView"
+                        ng-disabled="isDisabled()"
+                        pip-rebind="true">
+    </pip-composite-view>
+```
 
 Todo: Add image of the composite view
 
@@ -67,10 +72,17 @@ Todo: Describe attributes of this directive
 This is a shorter version of **pip-composite-view** control for previews and tiles. It shows only first 3 blocks. Text and lists are truncated to keep it concise. **pip-composite-summary** does not support check/uncheck of checklist items.
 
 This directive relies on **files** operation from standard REST API.
-Todo: Add reference to pip-webui-rest module with protocol definition
+[Go to Pip.WebUI.Rest Users's Guide](https://github.com/pip-webui/pip-webui-rest/blob/master/doc/UsersGuide.md)
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+<pip-composite-summary pip-contents="compositeSummarySecondary"
+                       pip-secondary-block-types="['documents', 'time', 'location']"
+                       pip-text-size="4"
+                       pip-checklist-size="3"
+                       pip-rebind="true">
+</pip-composite-summary>
+```
 
 Todo: Add image of the composite summary
 
@@ -83,10 +95,18 @@ Todo: Describe attributes of this directive
 **pip-composite-edit** control allows to construct complex content using blocks with hypertext, images, documents, locations and checklists. Blocks can be added, moved up or down or removed. Hypertext is entered using popular markdown format.
 
 This directive relies on **files** operation from standard REST API.
-Todo: Add reference to pip-webui-rest module with protocol definition
+[Go to Pip.WebUI.Rest Users's Guide](https://github.com/pip-webui/pip-webui-rest/blob/master/doc/UsersGuide.md)
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+<pip-composite-edit pip-contents="compositeView"
+                    pip-scroll-container=".composite-scroll"
+                    pip-rebind="true"
+                    pip-composite-placeholder="'DESCRIBE_THIS'"
+                    pip-added-content="true"
+                    pip-composite-id="2">
+</pip-composite-edit>
+```
 
 Todo: Add image of the composite edit control
 
@@ -99,7 +119,12 @@ Todo: Describe attributes of this directive
 **pip-checklist-view** control shows read-only version of checklist and only allows to check/uncheck items. This control is integrated inside **pip-composite-view** and **pip-composite-summary**, but it also can be used independently.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+<pip-composite-view pip-contents="compositeView"
+                    ng-disabled="isDisabled()"
+                    pip-rebind="true">
+</pip-composite-view>
+```
 
 Todo: Add image of the checklist view control
 
@@ -112,7 +137,14 @@ Todo: Describe attributes of this directive
 **pip-checklist-edit** control allows to edit checklist with textual items. It allows to append or insert new items, edit them, change their order or remove them. This control is integrated into **pip-composite-edit**, but it can also be used independently.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+<pip-checklist-edit pip-draggable="true"
+                    ng-disabled="isDisabled()"
+                    pip-changed="onChange"
+                    pip-options="emptyChecklist"
+                    pip-rebind="emptyChecklistRebind">
+</pip-checklist-edit>
+```
 
 Todo: Add image of the checklist edit control
 
@@ -125,7 +157,9 @@ Todo: Describe attributes of this directive
 **pip-content-switch** control helps to construct own vesion of a simple composite content. By clicking a button user can add or remove text, images, files or location elements.
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive
+```html
+ <pip-content-switch class="flex" pip-parent-element-name="'.sample-output'"> </pip-content-switch>
+```
 
 Todo: Add image of the content switch control
 
