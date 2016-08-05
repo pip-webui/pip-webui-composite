@@ -8,37 +8,37 @@ Pip.WebUI.Settings module contains a number of controls to visualize and edit co
 
 **Composite view** controls shows read-only version of composite content. The content structured as blocks with hypertext, images, documents, locations, checklists. The only allowed action is to check/uncheck item in checklists.
 
-<img src="doc/imagesimg-composite-view.png"/>
+<img src="doc/images/img-composite-view.png"/>
 
 ### Composite summary
 
 This is a shorter version of **Composite view** control for previews and tiles. It shows only first 3 blocks. Text and lists are truncated to keep it concise. **Composite summary** does not support check/uncheck of checklist items.
 
-<img src="doc/imagesimg-composite-summary.png"/>
+<img src="doc/images/img-composite-summary.png"/>
 
 ### Composite edit
 
 **Composite edit** control allows to construct complex content using blocks with hypertext, images, documents, locations and checklists. Blocks can be added, moved up or down or removed. Hypertext is entered using popular markdown format.
 
-<img src="doc/imagesimg-composite-filled.png"/>
+<img src="doc/images/img-composite-filled.png"/>
 
 ### Checklist view
 
 **Checklist view** control shows read-only version of checklist and only allows to check/uncheck items. This control is integrated inside **Composite view** and **Composite summary**, but it also can be used independently.
 
-<img src="doc/imagesimg-checklist-view.png"/>
+<img src="doc/images/img-checklist-view.png"/>
 
 ### Checklist edit
 
 **Checklist edit** control allows to edit checklist with textual items. It allows to append or insert new items, edit them, change their order or remove them. This control is integrated into **Composite edit**, but it can also be used independently.
 
-<img src="doc/imagesimg-checklist-edit.png"/>
+<img src="doc/images/img-checklist-edit.png"/>
 
 ### Content switch
 
 **Content switch** control helps to construct own vesion of a simple composite content. By clicking a button user can add or remove text, images, files or location elements.
 
-<img src="doc/imagesimg-composite-switch.png"/>
+<img src="doc/images/img-composite-switch.png"/>
 
 
 ## Learn more about the module
