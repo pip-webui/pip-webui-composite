@@ -1,9 +1,9 @@
 {
-  "name": "pip-webui-composite",
-  "version": "1.0.0",
-  "description": "Composite content controls for Pip.WebUI",
-  "main": "",
-  "authors": [
+    "name": "pip-webui-composite",
+    "version": "1.0.0",
+    "description": "Composite content controls for Pip.WebUI",
+    "main": "",
+    "authors": [
         {
             "name": "Sergey Seroukhov",
             "email": "seroukhov@gmail.com"
@@ -12,25 +12,25 @@
             "name": "Anastas Fonotov",
             "email": "anastasf@gmail.com"
         }
-  ],
-  "license": "MIT",
-  "keywords": [
-    "pip",
-    "webui",
-    "composite",
-    "controls"
-  ],
-  "homepage": "https://github.com/pip-webui/pip-webui-composite",
-  "ignore": [
-    ".gitignore",
-    "node_modules",
-    "bower_components",
-    "src",
-    "tests",
-    "samples",
-    "scripts",
-    "build.*",
-    "gulpfile.js",
-    "karma.conf.js"
-  ]
+    ],
+    "license": "MIT",
+    "keywords": [
+        "pip",
+        "webui",
+        "composite",
+        "controls"
+    ],
+    "homepage": "https://github.com/pip-webui/pip-webui-composite",
+    "ignore": [
+        ".gitignore",
+        "node_modules",
+        "bower_components",
+        "src",
+        "tests",
+        "samples",
+        "scripts",
+        "build.*",
+        "gulpfile.js",
+        "karma.conf.js"
+    ]
 }
