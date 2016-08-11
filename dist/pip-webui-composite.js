@@ -324,6 +324,75 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_toolbar/composite_toolbar.html',
+    '<!--\n' +
+    '@file Composite toolbar control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="layout-row layout-align-start-start flex">\n' +
+    '    <md-button class="pip-composite-button"\n' +
+    '               ng-if="!emptyState"\n' +
+    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
+    '                                \'new-item\': !emptyState }"\n' +
+    '               ng-click="onAddItem(\'text\');"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
+    '               ng-disabled="ngDisabled()">\n' +
+    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.checklist"\n' +
+    '               ng-click="onAddItem(\'checklist\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
+    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
+    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.picture"\n' +
+    '               ng-click="onAddItem(\'pictures\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
+    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
+    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
+    '               ng-if="toolbarButton.document"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
+    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
+    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'location\')"\n' +
+    '               ng-if="toolbarButton.location"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
+    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
+    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'time\')"\n' +
+    '               ng-if="toolbarButton.event"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
+    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_summary/composite_summary.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -532,75 +601,6 @@ module.run(['$templateCache', function($templateCache) {
     '           ng-disabled="transaction.busy()">\n' +
     '    <md-icon ng-class="{ \'active-location\': showLocation }" md-svg-icon="icons:location"></md-icon>\n' +
     '</md-button>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_toolbar/composite_toolbar.html',
-    '<!--\n' +
-    '@file Composite toolbar control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="layout-row layout-align-start-start flex">\n' +
-    '    <md-button class="pip-composite-button"\n' +
-    '               ng-if="!emptyState"\n' +
-    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
-    '                                \'new-item\': !emptyState }"\n' +
-    '               ng-click="onAddItem(\'text\');"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
-    '               ng-disabled="ngDisabled()">\n' +
-    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.checklist"\n' +
-    '               ng-click="onAddItem(\'checklist\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
-    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
-    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.picture"\n' +
-    '               ng-click="onAddItem(\'pictures\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
-    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
-    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
-    '               ng-if="toolbarButton.document"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
-    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
-    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'location\')"\n' +
-    '               ng-if="toolbarButton.location"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
-    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
-    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'time\')"\n' +
-    '               ng-if="toolbarButton.event"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
-    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '\n' +
-    '</div>');
 }]);
 })();
 
@@ -1846,6 +1846,98 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
+ * @file Content switch control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Remove after composite content control is ready
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
+
+    thisModule.directive('pipContentSwitch', 
+        ['$parse', function($parse) {
+            return {
+                restrict: 'EA',
+                scope: false,
+                templateUrl: 'content_switch/content_switch.html',
+                link: function($scope, $element, $attrs) {
+    
+                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
+                    var parentElement = parentElementNameGetter($scope);
+
+                    $scope.onButtonClick = onButtonClick;
+
+                    // Initialization
+                    setOption();
+                    $element.addClass('pip-content-switch');
+
+                    return ;
+
+                    function scrollTo(childElement) {
+                        setTimeout(function () {
+                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
+                            if (modDiff < 20) return;
+                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
+                            $(parentElement).animate({
+                                scrollTop: scrollTo + 'px'
+                            }, 300);
+                        }, 100);
+                    };
+    
+                    function setOption() {
+                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
+                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
+                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
+                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
+                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
+                        } else {
+                            $scope.showIconPicture = true;
+                            $scope.showIconDocument = true;
+                            $scope.showIconLocation = true;
+                            $scope.showIconEvent = true;
+                        }
+                    };
+    
+                    function onButtonClick(type) {
+                        if (!parentElement) return;
+    
+                        switch(type){
+                            case 'event':
+                                // On Event click action
+                                if ($scope.showEvent)
+                                    scrollTo('.event-edit');
+                                break;
+                            case 'documents':
+                                // On Documents click action
+                                if ($scope.showDocuments)
+                                    scrollTo('.pip-document-list-edit');
+                                break;
+                            case 'pictures':
+                                // On Pictures click action
+                                if ($scope.showPictures)
+                                    scrollTo('.pip-picture-list-edit');
+                                break;
+                            case 'location':
+                                // On Location click action
+                                if ($scope.showLocation)
+                                    scrollTo('.pip-location-edit');
+                                break;
+                        };
+                    };
+
+                }
+            };
+        }]
+    );
+
+})();
+
+/**
  * @file Composite toolbar control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -1939,59 +2031,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })();
-/**
- * @file Touch start control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipMobileMousedown", []);
-
-    thisModule.directive('pipMobileMousedown',
-        function () {
-            return function (scope, elem, attrs) {
-                elem.bind("touchstart mousedown", function (e) {
-            //        e.preventDefault();
-            //        e.stopPropagation();
-                    scope.$apply(attrs["pipMobileMousedown"]);
-            //        e.preventDefault();
-                });
-            }
-        }
-    );
-
-})();
-
-/**
- * @file Touch start control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipMobileMouseup", []);
-
-    thisModule.directive('pipMobileMouseup',
-        function () {
-            return function (scope, elem, attrs) {
-                elem.bind("touchend mouseup", function (e) {
-                //    e.preventDefault();
-         //           e.stopPropagation();
-                    scope.$apply(attrs["pipMobileMouseup"]);
-                });
-            }
-        }
-    );
-
-})();
-
 /**
  * @file Composite view control
  * @copyright Digital Living Software Corp. 2014-2016
@@ -2102,98 +2141,6 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Content switch control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Remove after composite content control is ready
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipContentSwitch", ['pipComposite.Templates']);
-
-    thisModule.directive('pipContentSwitch', 
-        ['$parse', function($parse) {
-            return {
-                restrict: 'EA',
-                scope: false,
-                templateUrl: 'content_switch/content_switch.html',
-                link: function($scope, $element, $attrs) {
-    
-                    var parentElementNameGetter = $parse($attrs.pipParentElementName);
-                    var parentElement = parentElementNameGetter($scope);
-
-                    $scope.onButtonClick = onButtonClick;
-
-                    // Initialization
-                    setOption();
-                    $element.addClass('pip-content-switch');
-
-                    return ;
-
-                    function scrollTo(childElement) {
-                        setTimeout(function () {
-                            var modDiff= Math.abs($(parentElement).scrollTop() - $(childElement).position().top);
-                            if (modDiff < 20) return;
-                            var scrollTo = $(parentElement).scrollTop() + ($(childElement).position().top - 20);
-                            $(parentElement).animate({
-                                scrollTop: scrollTo + 'px'
-                            }, 300);
-                        }, 100);
-                    };
-    
-                    function setOption() {
-                        if ($scope.contentSwitchOption !== null && $scope.contentSwitchOption !== undefined) {
-                            $scope.showIconPicture = $scope.contentSwitchOption.picture ? $scope.contentSwitchOption.picture : $scope.showIconPicture;
-                            $scope.showIconDocument = $scope.contentSwitchOption.document ? $scope.contentSwitchOption.document : $scope.showIconDocument;
-                            $scope.showIconLocation = $scope.contentSwitchOption.location ? $scope.contentSwitchOption.location : $scope.showIconLocation;
-                            $scope.showIconEvent = $scope.contentSwitchOption.event ? $scope.contentSwitchOption.event : $scope.showIconEvent;
-                        } else {
-                            $scope.showIconPicture = true;
-                            $scope.showIconDocument = true;
-                            $scope.showIconLocation = true;
-                            $scope.showIconEvent = true;
-                        }
-                    };
-    
-                    function onButtonClick(type) {
-                        if (!parentElement) return;
-    
-                        switch(type){
-                            case 'event':
-                                // On Event click action
-                                if ($scope.showEvent)
-                                    scrollTo('.event-edit');
-                                break;
-                            case 'documents':
-                                // On Documents click action
-                                if ($scope.showDocuments)
-                                    scrollTo('.pip-document-list-edit');
-                                break;
-                            case 'pictures':
-                                // On Pictures click action
-                                if ($scope.showPictures)
-                                    scrollTo('.pip-picture-list-edit');
-                                break;
-                            case 'location':
-                                // On Location click action
-                                if ($scope.showLocation)
-                                    scrollTo('.pip-location-edit');
-                                break;
-                        };
-                    };
-
-                }
-            };
-        }]
-    );
-
-})();
-
-/**
  * @file Keyboard navigation with scrolling over non-focusable controls
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2223,5 +2170,58 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 
+
+/**
+ * @file Touch start control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipMobileMousedown", []);
+
+    thisModule.directive('pipMobileMousedown',
+        function () {
+            return function (scope, elem, attrs) {
+                elem.bind("touchstart mousedown", function (e) {
+            //        e.preventDefault();
+            //        e.stopPropagation();
+                    scope.$apply(attrs["pipMobileMousedown"]);
+            //        e.preventDefault();
+                });
+            }
+        }
+    );
+
+})();
+
+/**
+ * @file Touch start control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipMobileMouseup", []);
+
+    thisModule.directive('pipMobileMouseup',
+        function () {
+            return function (scope, elem, attrs) {
+                elem.bind("touchend mouseup", function (e) {
+                //    e.preventDefault();
+         //           e.stopPropagation();
+                    scope.$apply(attrs["pipMobileMouseup"]);
+                });
+            }
+        }
+    );
+
+})();
 
 //# sourceMappingURL=pip-webui-composite.js.map
