@@ -169,6 +169,94 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_summary/composite_summary.html',
+    '<div ng-repeat="item in compositeContent track by $index">\n' +
+    '\n' +
+    '    <!-- for text -->\n' +
+    '    <div class="pip-composite-text" ng-if="item.type == \'text\' && item.text">\n' +
+    '        <pip-markdown pip-text="item.text"\n' +
+    '                      pip-line-count="{{textSize}}"\n' +
+    '                      pip-rebind="true"\n' +
+    '                      ng-disabled="true">\n' +
+    '        </pip-markdown>\n' +
+    '    </div>\n' +
+    '    <!-- for pictures -->\n' +
+    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
+    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
+    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
+    '         class="pip-composite-pictures">\n' +
+    '        <pip-collage ng-if="rebind"\n' +
+    '                     pip-picture-ids="item.pic_ids"\n' +
+    '                     pip-unique-code="item.id"\n' +
+    '                     pip-multiple="true"\n' +
+    '                     pip-open="disableControl"\n' +
+    '                     pip-rebind="true"\n' +
+    '                     ng-disabled="disableControl">\n' +
+    '        </pip-collage>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for documents -->\n' +
+    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
+    '         class="pip-composite-documents layout-row flex">\n' +
+    '        <pip-document-list class="flex"\n' +
+    '                           pip-documents="item.docs"\n' +
+    '                           pip-rebind="true"\n' +
+    '                           pip-document-icon="true"\n' +
+    '                           pip-collapse="true"\n' +
+    '                           ng-disabled="disableControl">\n' +
+    '        </pip-document-list>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for checklist -->\n' +
+    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
+    '         class="pip-composite-checklist">\n' +
+    '        <pip-checklist-view pip-options="item.checklist"\n' +
+    '                            pip-changed="onContentChange()"\n' +
+    '                            pip-rebind="true"\n' +
+    '                            pip-collapse="true"\n' +
+    '                            ng-disabled="disabledChecklist">\n' +
+    '        </pip-checklist-view>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!--for location -->\n' +
+    '    <div class="pip-composite-location layout-row layout-align-start-center flex"\n' +
+    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
+    '\n' +
+    '        <pip-location class="flex"\n' +
+    '                      pip-location-name="item.loc_name"\n' +
+    '                      pip-location-pos="item.loc_pos"\n' +
+    '                      pip-collapse="true"\n' +
+    '                      pip-show-location-icon="true"\n' +
+    '                      ng-disabled="disableControl"\n' +
+    '                      pip-rebind="true">\n' +
+    '        </pip-location>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <!-- for time -->\n' +
+    '    <div class="pip-composite-time layout-row layout-align-start-center flex"\n' +
+    '         ng-if="item.type == \'time\' && (item.start || item.end)">\n' +
+    '\n' +
+    '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
+    '        <pip-time-range\n' +
+    '                pip-start-date="item.start"\n' +
+    '                pip-end-date="item.end"\n' +
+    '                pip-rebind="true"\n' +
+    '                ng-disabled="disableControl">\n' +
+    '        </pip-time-range>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_edit/composite_edit.html',
     '<!--\n' +
     '@file Composite edit control content\n' +
@@ -324,163 +412,6 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_toolbar/composite_toolbar.html',
-    '<!--\n' +
-    '@file Composite toolbar control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="layout-row layout-align-start-start flex">\n' +
-    '    <md-button class="pip-composite-button"\n' +
-    '               ng-if="!emptyState"\n' +
-    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
-    '                                \'new-item\': !emptyState }"\n' +
-    '               ng-click="onAddItem(\'text\');"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
-    '               ng-disabled="ngDisabled()">\n' +
-    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.checklist"\n' +
-    '               ng-click="onAddItem(\'checklist\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
-    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
-    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.picture"\n' +
-    '               ng-click="onAddItem(\'pictures\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
-    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
-    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
-    '               ng-if="toolbarButton.document"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
-    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
-    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'location\')"\n' +
-    '               ng-if="toolbarButton.location"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
-    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
-    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'time\')"\n' +
-    '               ng-if="toolbarButton.event"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
-    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_summary/composite_summary.html',
-    '<div ng-repeat="item in compositeContent track by $index">\n' +
-    '\n' +
-    '    <!-- for text -->\n' +
-    '    <div class="pip-composite-text" ng-if="item.type == \'text\' && item.text">\n' +
-    '        <pip-markdown pip-text="item.text"\n' +
-    '                      pip-line-count="{{textSize}}"\n' +
-    '                      pip-rebind="true"\n' +
-    '                      ng-disabled="true">\n' +
-    '        </pip-markdown>\n' +
-    '    </div>\n' +
-    '    <!-- for pictures -->\n' +
-    '    <div ng-if="item.type == \'pictures\' && item.pic_ids.length > 0"\n' +
-    '         ng-class=" compositeContent[$index - 1].type != \'pictures\' ?\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm16 bm16\' : \'tm16 bm0\' :\n' +
-    '                    compositeContent[$index + 1].type != \'pictures\' ? \'tm8 bm16\' : \'tm8 bm0\' "\n' +
-    '         class="pip-composite-pictures">\n' +
-    '        <pip-collage ng-if="rebind"\n' +
-    '                     pip-picture-ids="item.pic_ids"\n' +
-    '                     pip-unique-code="item.id"\n' +
-    '                     pip-multiple="true"\n' +
-    '                     pip-open="disableControl"\n' +
-    '                     pip-rebind="true"\n' +
-    '                     ng-disabled="disableControl">\n' +
-    '        </pip-collage>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for documents -->\n' +
-    '    <div ng-if="item.type == \'documents\' && item.docs.length > 0"\n' +
-    '         class="pip-composite-documents layout-row flex">\n' +
-    '        <pip-document-list class="flex"\n' +
-    '                           pip-documents="item.docs"\n' +
-    '                           pip-rebind="true"\n' +
-    '                           pip-document-icon="true"\n' +
-    '                           pip-collapse="true"\n' +
-    '                           ng-disabled="disableControl">\n' +
-    '        </pip-document-list>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for checklist -->\n' +
-    '    <div ng-if="item.type == \'checklist\' && item.checklist.length > 0"\n' +
-    '         class="pip-composite-checklist">\n' +
-    '        <pip-checklist-view pip-options="item.checklist"\n' +
-    '                            pip-changed="onContentChange()"\n' +
-    '                            pip-rebind="true"\n' +
-    '                            pip-collapse="true"\n' +
-    '                            ng-disabled="disabledChecklist">\n' +
-    '        </pip-checklist-view>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!--for location -->\n' +
-    '    <div class="pip-composite-location layout-row layout-align-start-center flex"\n' +
-    '         ng-if="item.type == \'location\' && (item.loc_pos || item.loc_name)">\n' +
-    '\n' +
-    '        <pip-location class="flex"\n' +
-    '                      pip-location-name="item.loc_name"\n' +
-    '                      pip-location-pos="item.loc_pos"\n' +
-    '                      pip-collapse="true"\n' +
-    '                      pip-show-location-icon="true"\n' +
-    '                      ng-disabled="disableControl"\n' +
-    '                      pip-rebind="true">\n' +
-    '        </pip-location>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <!-- for time -->\n' +
-    '    <div class="pip-composite-time layout-row layout-align-start-center flex"\n' +
-    '         ng-if="item.type == \'time\' && (item.start || item.end)">\n' +
-    '\n' +
-    '        <md-icon md-svg-icon="icons:time" class="rm24 lm0"></md-icon>\n' +
-    '        <pip-time-range\n' +
-    '                pip-start-date="item.start"\n' +
-    '                pip-end-date="item.end"\n' +
-    '                pip-rebind="true"\n' +
-    '                ng-disabled="disableControl">\n' +
-    '        </pip-time-range>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_view/composite_view.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -555,6 +486,75 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</div>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_toolbar/composite_toolbar.html',
+    '<!--\n' +
+    '@file Composite toolbar control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="layout-row layout-align-start-start flex">\n' +
+    '    <md-button class="pip-composite-button"\n' +
+    '               ng-if="!emptyState"\n' +
+    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
+    '                                \'new-item\': !emptyState }"\n' +
+    '               ng-click="onAddItem(\'text\');"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
+    '               ng-disabled="ngDisabled()">\n' +
+    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.checklist"\n' +
+    '               ng-click="onAddItem(\'checklist\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
+    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
+    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.picture"\n' +
+    '               ng-click="onAddItem(\'pictures\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
+    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
+    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
+    '               ng-if="toolbarButton.document"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
+    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
+    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'location\')"\n' +
+    '               ng-if="toolbarButton.location"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
+    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
+    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'time\')"\n' +
+    '               ng-if="toolbarButton.event"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
+    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '\n' +
+    '</div>');
 }]);
 })();
 
@@ -1704,6 +1704,148 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 /**
+ * @file Composite summary control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipCompositeSummary", [
+        'pipCore', 'pipDocuments', 'pipLocations', 'pipPictures', 'pipComposite.Templates']);
+
+    thisModule.directive('pipCompositeSummary',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipContents: '=',
+                    pipChecklistSize: '=',
+                    pipTextSize: '=',
+                    pipPrimaryBlockLimit: '=',
+                    pipSecondaryBlockLimit: '=',
+                    pipSecondaryBlockTypes: '='
+                },
+                templateUrl: 'composite_summary/composite_summary.html',
+                controller: 'pipCompositeSummaryController'
+            }
+        }
+    );
+
+    thisModule.controller('pipCompositeSummaryController',
+        ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+
+            $scope.rebind = pipUtils.toBoolean($attrs.pipRebind);
+            $scope.disableControl = true;
+            $scope.disabledChecklist = true;
+
+            $scope.secondaryBlockTypes = $scope.pipSecondaryBlockTypes !== undefined &&
+                Array.isArray($scope.pipSecondaryBlockTypes) ? $scope.pipSecondaryBlockTypes :
+                 ['checklist', 'documents', 'location', 'time'];
+            $scope.textSize = $scope.pipTextSize !== undefined && $scope.pipTextSize > 0 ? $scope.pipTextSize : 0;
+            $scope.secondaryBlockLimit = $scope.pipSecondaryBlockLimit !== undefined && $scope.pipSecondaryBlockLimit > 0 ? $scope.pipSecondaryBlockLimit : -1;
+            $scope.checklistSize = $scope.pipChecklistSize !== undefined && $scope.pipChecklistSize > 0 ? $scope.pipChecklistSize : 0;
+            $scope.primaryBlockLimit = $scope.pipPrimaryBlockLimit !== undefined ? $scope.pipPrimaryBlockLimit : -1;
+
+            generateList($scope.pipContents);
+
+            // Watch for options changes
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watchCollection('pipContents', function (newValue) {
+                    if (!Array.isArray($scope.pipContents)) {
+                        throw new Error('Error: Attribute pip-contents must be array!');
+                    }
+                    generateList($scope.pipContents);
+                });
+            }
+
+            // Add class
+            $element.addClass('pip-composite-summary');
+
+            return;
+
+            // усекаем чеклист до 3
+            function limitChecklist(content, val) {
+                if (!val) return;
+                _.each(content, function(item) {
+                    if (item && item.type == 'checklist') {
+                        var checklistLength = item.checklist.length;
+                        item.checklist =_.take(item.checklist, val);
+                        if (checklistLength > val) item.checklist.push({
+                            text: '...',
+                             checked: false
+                        });
+                    }
+                });
+            };
+
+            // отбираем текст и картинки
+            function selectSummary(content) {
+                var result = [],
+                    i = 0;
+
+                _.each(content, function(item) {
+                    if ($scope.primaryBlockLimit >= 0 && i >= $scope.primaryBlockLimit) return result;
+
+                    //if (item.type == 'text' || item.type == 'pictures' ) {
+                    if ($scope.secondaryBlockTypes.indexOf(item.type) < 0) {
+                        result.push(item);
+                        i += 1;
+                    }
+                });
+
+                return result;
+            };
+
+            // отбираем остальные блоки если они есть
+            function selectSummarySecondary(content, types) {
+                var i, limit =  $scope.secondaryBlockLimit < 0 ? content.length : $scope.secondaryBlockLimit;
+                var result = [];
+
+                for (i = 0; i < content.length; i++ ) {
+                    if (types.indexOf(content[i].type) > -1) {
+                        result.push(content[i]);
+                        if (result.length >= limit) break;
+                    }
+                }
+
+                return result;
+            };
+
+            function generateList(content) {
+                if (!content ||  content.length < 1) {
+                    clearList();
+                    return;
+                } else {
+                     var summaryContent = _.cloneDeep(content);
+                    var result = selectSummary(summaryContent);
+                    if (result.length == 0) {
+                        result = selectSummarySecondary(summaryContent, $scope.secondaryBlockTypes);
+                    }
+
+                    limitChecklist(result, $scope.checklistSize);
+
+                    var id = 0;
+                    _.each(result, function(item){
+                        item.id = id;
+                        id ++;
+                    });
+                    $scope.compositeContent = result;
+                }
+            };
+
+            function clearList() {
+                $scope.compositeContent = [];
+            };
+
+        }]
+    );
+
+})();
+
+/**
  * @file Composite toolbar control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -1907,201 +2049,6 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Composite summary control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipCompositeSummary", [
-        'pipCore', 'pipDocuments', 'pipLocations', 'pipPictures', 'pipComposite.Templates']);
-
-    thisModule.directive('pipCompositeSummary',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipContents: '=',
-                    pipChecklistSize: '=',
-                    pipTextSize: '=',
-                    pipPrimaryBlockLimit: '=',
-                    pipSecondaryBlockLimit: '=',
-                    pipSecondaryBlockTypes: '='
-                },
-                templateUrl: 'composite_summary/composite_summary.html',
-                controller: 'pipCompositeSummaryController'
-            }
-        }
-    );
-
-    thisModule.controller('pipCompositeSummaryController',
-        ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
-
-            $scope.rebind = pipUtils.toBoolean($attrs.pipRebind);
-            $scope.disableControl = true;
-            $scope.disabledChecklist = true;
-
-            $scope.secondaryBlockTypes = $scope.pipSecondaryBlockTypes !== undefined &&
-                Array.isArray($scope.pipSecondaryBlockTypes) ? $scope.pipSecondaryBlockTypes :
-                 ['checklist', 'documents', 'location', 'time'];
-            $scope.textSize = $scope.pipTextSize !== undefined && $scope.pipTextSize > 0 ? $scope.pipTextSize : 0;
-            $scope.secondaryBlockLimit = $scope.pipSecondaryBlockLimit !== undefined && $scope.pipSecondaryBlockLimit > 0 ? $scope.pipSecondaryBlockLimit : -1;
-            $scope.checklistSize = $scope.pipChecklistSize !== undefined && $scope.pipChecklistSize > 0 ? $scope.pipChecklistSize : 0;
-            $scope.primaryBlockLimit = $scope.pipPrimaryBlockLimit !== undefined ? $scope.pipPrimaryBlockLimit : -1;
-
-            generateList($scope.pipContents);
-
-            // Watch for options changes
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watchCollection('pipContents', function (newValue) {
-                    if (!Array.isArray($scope.pipContents)) {
-                        throw new Error('Error: Attribute pip-contents must be array!');
-                    }
-                    generateList($scope.pipContents);
-                });
-            }
-
-            // Add class
-            $element.addClass('pip-composite-summary');
-
-            return;
-
-            // усекаем чеклист до 3
-            function limitChecklist(content, val) {
-                if (!val) return;
-                _.each(content, function(item) {
-                    if (item && item.type == 'checklist') {
-                        var checklistLength = item.checklist.length;
-                        item.checklist =_.take(item.checklist, val);
-                        if (checklistLength > val) item.checklist.push({
-                            text: '...',
-                             checked: false
-                        });
-                    }
-                });
-            };
-
-            // отбираем текст и картинки
-            function selectSummary(content) {
-                var result = [],
-                    i = 0;
-
-                _.each(content, function(item) {
-                    if ($scope.primaryBlockLimit >= 0 && i >= $scope.primaryBlockLimit) return result;
-
-                    //if (item.type == 'text' || item.type == 'pictures' ) {
-                    if ($scope.secondaryBlockTypes.indexOf(item.type) < 0) {
-                        result.push(item);
-                        i += 1;
-                    }
-                });
-
-                return result;
-            };
-
-            // отбираем остальные блоки если они есть
-            function selectSummarySecondary(content, types) {
-                var i, limit =  $scope.secondaryBlockLimit < 0 ? content.length : $scope.secondaryBlockLimit;
-                var result = [];
-
-                for (i = 0; i < content.length; i++ ) {
-                    if (types.indexOf(content[i].type) > -1) {
-                        result.push(content[i]);
-                        if (result.length >= limit) break;
-                    }
-                }
-
-                return result;
-            };
-
-            function generateList(content) {
-                if (!content ||  content.length < 1) {
-                    clearList();
-                    return;
-                } else {
-                     var summaryContent = _.cloneDeep(content);
-                    var result = selectSummary(summaryContent);
-                    if (result.length == 0) {
-                        result = selectSummarySecondary(summaryContent, $scope.secondaryBlockTypes);
-                    }
-
-                    limitChecklist(result, $scope.checklistSize);
-
-                    var id = 0;
-                    _.each(result, function(item){
-                        item.id = id;
-                        id ++;
-                    });
-                    $scope.compositeContent = result;
-                }
-            };
-
-            function clearList() {
-                $scope.compositeContent = [];
-            };
-
-        }]
-    );
-
-})();
-
-/**
- * @file Touch start control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipMobileMousedown", []);
-
-    thisModule.directive('pipMobileMousedown',
-        function () {
-            return function (scope, elem, attrs) {
-                elem.bind("touchstart mousedown", function (e) {
-            //        e.preventDefault();
-            //        e.stopPropagation();
-                    scope.$apply(attrs["pipMobileMousedown"]);
-            //        e.preventDefault();
-                });
-            }
-        }
-    );
-
-})();
-
-/**
- * @file Touch start control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipMobileMouseup", []);
-
-    thisModule.directive('pipMobileMouseup',
-        function () {
-            return function (scope, elem, attrs) {
-                elem.bind("touchend mouseup", function (e) {
-                //    e.preventDefault();
-         //           e.stopPropagation();
-                    scope.$apply(attrs["pipMobileMouseup"]);
-                });
-            }
-        }
-    );
-
-})();
-
-/**
  * @file Content switch control
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2189,6 +2136,59 @@ module.run(['$templateCache', function($templateCache) {
                 }
             };
         }]
+    );
+
+})();
+
+/**
+ * @file Touch start control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipMobileMousedown", []);
+
+    thisModule.directive('pipMobileMousedown',
+        function () {
+            return function (scope, elem, attrs) {
+                elem.bind("touchstart mousedown", function (e) {
+            //        e.preventDefault();
+            //        e.stopPropagation();
+                    scope.$apply(attrs["pipMobileMousedown"]);
+            //        e.preventDefault();
+                });
+            }
+        }
+    );
+
+})();
+
+/**
+ * @file Touch start control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipMobileMouseup", []);
+
+    thisModule.directive('pipMobileMouseup',
+        function () {
+            return function (scope, elem, attrs) {
+                elem.bind("touchend mouseup", function (e) {
+                //    e.preventDefault();
+         //           e.stopPropagation();
+                    scope.$apply(attrs["pipMobileMouseup"]);
+                });
+            }
+        }
     );
 
 })();
