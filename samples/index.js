@@ -11,7 +11,8 @@
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipComposite', 'pipNav',
             'pipLayout',
             // testing data modules (have some data for example)
-            'pipWebuiTests', 'pipSampleConfig',
+            // Error! Lost templates. Do not uncomment 'pipWebuiTests', 
+            'pipSampleConfig',
             // Sample Application Modules
             'appComposite.Checklist',
             'appComposite.CompositeEmpty', 'appComposite.Composite', 'appComposite.CompositeView',
