@@ -324,75 +324,6 @@ try {
   module = angular.module('pipComposite.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('composite_toolbar/composite_toolbar.html',
-    '<!--\n' +
-    '@file Composite toolbar control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="layout-row layout-align-start-start flex">\n' +
-    '    <md-button class="pip-composite-button"\n' +
-    '               ng-if="!emptyState"\n' +
-    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
-    '                                \'new-item\': !emptyState }"\n' +
-    '               ng-click="onAddItem(\'text\');"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
-    '               ng-disabled="ngDisabled()">\n' +
-    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.checklist"\n' +
-    '               ng-click="onAddItem(\'checklist\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
-    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
-    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-if="toolbarButton.picture"\n' +
-    '               ng-click="onAddItem(\'pictures\')"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
-    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
-    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
-    '               ng-if="toolbarButton.document"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
-    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
-    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'location\')"\n' +
-    '               ng-if="toolbarButton.location"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
-    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
-    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '    <md-button ng-click="onAddItem(\'time\')"\n' +
-    '               ng-if="toolbarButton.event"\n' +
-    '               ng-disabled="ngDisabled()"\n' +
-    '               class="pip-composite-button"\n' +
-    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
-    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
-    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
-    '    </md-button>\n' +
-    '\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipComposite.Templates');
-} catch (e) {
-  module = angular.module('pipComposite.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('composite_summary/composite_summary.html',
     '<div ng-repeat="item in compositeContent track by $index">\n' +
     '\n' +
@@ -471,6 +402,75 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</div>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipComposite.Templates');
+} catch (e) {
+  module = angular.module('pipComposite.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('composite_toolbar/composite_toolbar.html',
+    '<!--\n' +
+    '@file Composite toolbar control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="layout-row layout-align-start-start flex">\n' +
+    '    <md-button class="pip-composite-button"\n' +
+    '               ng-if="!emptyState"\n' +
+    '               ng-class="{ \'remove-item\': !emptyState ,\n' +
+    '                                \'new-item\': !emptyState }"\n' +
+    '               ng-click="onAddItem(\'text\');"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TEXT"\n' +
+    '               ng-disabled="ngDisabled()">\n' +
+    '        <md-icon class="icon-text-block" md-svg-icon="icons:text"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TEXT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.checklist"\n' +
+    '               ng-click="onAddItem(\'checklist\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-CHECKLIST">\n' +
+    '        <md-icon class="icon-checkbox-on" md-svg-icon="icons:checkbox-on"></md-icon>\n' +
+    '        <md-tooltip>{{::\'CHECKLIST\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-if="toolbarButton.picture"\n' +
+    '               ng-click="onAddItem(\'pictures\')"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-PICTURES">\n' +
+    '        <md-icon class="icon-camera" md-svg-icon="icons:camera"></md-icon>\n' +
+    '        <md-tooltip>{{::\'PICTURE\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'documents\')"\n' +
+    '               ng-if="toolbarButton.document"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-DOCUMENTS">\n' +
+    '        <md-icon class="icon-document" md-svg-icon="icons:document"></md-icon>\n' +
+    '        <md-tooltip>{{::\'DOCUMENT\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'location\')"\n' +
+    '               ng-if="toolbarButton.location"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-LOCATIONS">\n' +
+    '        <md-icon class="icon-location" md-svg-icon="icons:location"></md-icon>\n' +
+    '        <md-tooltip>{{::\'LOCATION\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '    <md-button ng-click="onAddItem(\'time\')"\n' +
+    '               ng-if="toolbarButton.event"\n' +
+    '               ng-disabled="ngDisabled()"\n' +
+    '               class="pip-composite-button"\n' +
+    '               aria-label="COMPOSITE-BUTTON-TIME">\n' +
+    '        <md-icon class="icon-time" md-svg-icon="icons:time"></md-icon>\n' +
+    '        <md-tooltip>{{::\'TIME\'| translate}}</md-tooltip>\n' +
+    '    </md-button>\n' +
+    '\n' +
+    '</div>');
 }]);
 })();
 
