@@ -6,12 +6,12 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipSideNav', 'pipAppBar']);
+    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipSideNav', 'pipAppBar', 'pipDataConfig']);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, $mdIconProvider) {
+                  pipDataConfigProvider, pipSideNavProvider, pipAppBarProvider, $mdIconProvider) {
 
             var content = [
                 { title: 'Checklist', state: 'checklist', url: '/checklist',
@@ -83,7 +83,7 @@
             $urlRouterProvider.otherwise('/checklist');
 
             // Configure REST API
-            pipRestProvider.serverUrl('http://alpha.pipservices.net');
+            pipDataConfigProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure navigation menu
             pipSideNavProvider.sections([
