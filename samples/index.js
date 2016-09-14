@@ -21,11 +21,8 @@
     );
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, $state, $timeout, pipTestAccount,
-                  pipTestContent, pipAppBar) {
+        function ($scope, $rootScope, $state, $timeout, pipAppBar) {
 
-            $scope.serverUrl = pipTestAccount.getServerUrl();
-            $scope.sampleAccount = pipTestAccount.getSamplerAccount();
             $scope.pages = [
                 {
                     title: 'Checklist', state: 'checklist', url: '/checklist',
