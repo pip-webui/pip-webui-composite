@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Pip.WebUI.Settings module contains a number of controls to visualize and edit complex unstructured and semi-structured content composed of pictures, documents, locations, video or audio, and, of cause, hypertext with formatting and links.
+Pip.WebUI.Composite module contains a number of controls to visualize and edit complex unstructured and semi-structured content composed of pictures, documents, locations, video or audio, and, of course, hypertext with formatting and links.
 
 ### Composite view
 
